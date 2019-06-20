@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryTransparent">#5000574B</color>
+    <color name="colorAccent">#4950D8</color>
+
+    <color name="text">#111111</color>
+    <color name="textViewOne">#8BD6CB</color>
+    <color name="textViewTwo">#2BDAC1</color>
+    <color name="loginEditText">#25FFFFFF</color>
+    <color name="textColorHighlight">#466B73</color>
+    <color name="login">#4FA1BB</color>
+    <color name="create_account">#B6A57F</color>
+
+    <color name="menu">#C4EED0</color>
+
+    <color name="AustriaRed">#DA1D06</color>
+    <color name="PolandRed">#EA160C</color>
+    <color name="ItalyGreen">#008C45</color>
+    <color name="ItalyRed">#D2212B</color>
+    <color name="ColombiaYellow">#F9D021</color>
+    <color name="ColombiaBlue">#093A91</color>
+    <color name="ColombiaRed">#CA1223</color>
+    <color name="MadagascarRed">#F93D33</color>
+    <color name="MadagascarGreen">#007D3C</color>
+    <color name="ThailandRed">#CA1223</color>
+    <color name="ThailandBlue">#0A0799</color>
+    <color name="DenmarkRed">#D20F33</color>
+
+</resources>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ПВТ.МоиДЗ</string>
+    <string name="dz0">ДЗ0</string>
+    <string name="dz1">ДЗ1</string>
+    <string name="dz2">ДЗ2</string>
+    <string name="dz3">ДЗ3</string>
+    <string name="dz4">ДЗ4</string>
+    <string name="dz5">ДЗ5</string>
+    <string name="dz6">ДЗ6</string>
+    <string name="dz7">ДЗ7</string>
+    <string name="text_view1">Текст №1</string>
+    <string name="text_view2">Текст №2</string>
+    <string name="part1">Часть 1</string>
+    <string name="part2">Часть 2</string>
+    <string name="url">URL</string>
+    <string name="url_picture">https://mobimg.b-cdn.net/pic/v2/gallery/preview/tigry-zhivotnye-24572.jpg</string>
+
+    <string name="username">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="login">Войти</string>
+    <string name="download_picture">Загрузить картинку</string>
+    <string name="forgot"><u>Забыли имя пользователя/пароль?</u></string>
+    <string name="create_account">Создать учетную запись</string>
+
+</resources>
