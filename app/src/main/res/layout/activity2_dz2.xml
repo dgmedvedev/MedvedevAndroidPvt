@@ -22,15 +22,26 @@
             android:maxLines="1"
             android:inputType="text"
             android:hint="@string/url"
+            android:textCursorDrawable="@null"
             android:background="@color/colorPrimaryTransparent"/>
 
-    <ImageView
-            android:id="@+id/picture_view"
+    <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:background="@color/colorPrimaryTransparent"/>
+            android:layout_weight="1">
+        <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+        <ImageView
+                android:id="@+id/picture_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:background="@color/colorPrimaryTransparent">
+        </ImageView>
+    </FrameLayout>
 
     <Button
             android:id="@+id/picture_download"

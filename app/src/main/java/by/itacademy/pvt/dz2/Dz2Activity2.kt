@@ -2,10 +2,12 @@ package by.itacademy.pvt.dz2
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.Button
-import android.widget.ImageView
+import android.widget.ProgressBar
 import by.itacademy.pvt.R
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 
 class Dz2Activity2 : Activity() {
 
@@ -13,11 +15,17 @@ class Dz2Activity2 : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_dz2)
 
+        val progressBar: ProgressBar = findViewById(R.id.progressBar)
+        progressBar.visibility = INVISIBLE
+
         findViewById<Button>(R.id.picture_download)
             .setOnClickListener {
-                Picasso.get()
-                    .load("https://mobimg.b-cdn.net/pic/v2/gallery/preview/tigry-zhivotnye-24572.jpg")
-                    .into(findViewById<ImageView>(R.id.picture_view))
+                progressBar.visibility = VISIBLE
+
+                Glide.with(this)
+                    .load("https://clck.ru/GgBAr")
+                    .circleCrop()
+                    .into(findViewById(R.id.picture_view))
             }
     }
 }
