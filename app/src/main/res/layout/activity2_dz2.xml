@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/menu"
+              android:paddingStart="30dp"
+              android:paddingEnd="30dp">
+
+    <EditText
+            android:id="@+id/picture_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:textSize="20sp"
+            android:text="@string/url_picture"
+            android:fontFamily="@font/monda_regular"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:inputType="text"
+            android:hint="@string/url"
+            android:background="@color/colorPrimaryTransparent"/>
+
+    <ImageView
+            android:id="@+id/picture_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:background="@color/colorPrimaryTransparent"/>
+
+    <Button
+            android:id="@+id/picture_download"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp"
+            android:text="@string/download_picture"
+            android:textAllCaps="false"
+            android:background="@color/colorPrimaryDark"/>
+
+</LinearLayout>
