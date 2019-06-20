@@ -11,7 +11,6 @@ class MenuActivity : Activity() {
 
         findViewById<Button>(R.id.dz0)
             .setOnClickListener {
-
             }
     }
 }
