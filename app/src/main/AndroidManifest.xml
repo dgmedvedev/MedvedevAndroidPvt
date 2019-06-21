@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools" package="by.itacademy.pvt">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application android:allowBackup="true"
                  android:label="@string/app_name"
@@ -8,6 +9,7 @@
                  android:supportsRtl="true"
                  android:theme="@style/AppTheme"
                  tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name="by.itacademy.pvt.dz3.Dz3Activity"/>
         <activity android:name="by.itacademy.pvt.MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
