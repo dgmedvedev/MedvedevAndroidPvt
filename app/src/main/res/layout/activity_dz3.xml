@@ -43,54 +43,37 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-        <LinearLayout
-                android:id="@+id/trophies_LinearLayout"
-                style="@style/TrophiesLinearLayout">
-            <TextView
-                    android:id="@+id/trophies_TextView"
-                    android:text="@string/trophies"
-                    style="@style/TrophiesTextView"/>
-            <TextView
-                    android:id="@+id/count_trophies"
-                    android:text="@string/trophies_count"
-                    style="@style/CountTrophiesTextView"/>
-        </LinearLayout>
+    <LinearLayout
+            style="@style/TrophiesLinearLayout">
+        <TextView
+                android:text="@string/trophies"
+                style="@style/TrophiesTextView"
+                android:layout_weight="1"/>
+        <TextView
+                android:text="@string/following"
+                style="@style/TrophiesTextView"
+                android:layout_weight="1"/>
+        <TextView
+                android:text="@string/followers"
+                style="@style/TrophiesTextView"
+                android:layout_weight="1"/>
+    </LinearLayout>
 
-        <LinearLayout
-                android:id="@+id/following_LinearLayout"
-                style="@style/TrophiesLinearLayout"
-                android:layout_toEndOf="@id/trophies_LinearLayout"
-                android:layout_marginStart="30dp">
-            <TextView
-                    android:id="@+id/following_TextView"
-                    android:text="@string/following"
-                    style="@style/TrophiesTextView"/>
-            <TextView
-                    android:id="@+id/count_following"
-                    android:text="@string/following_count"
-                    style="@style/CountTrophiesTextView"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/followers_LinearLayout"
-                style="@style/TrophiesLinearLayout"
-                android:layout_toEndOf="@id/following_LinearLayout"
-                android:layout_marginStart="30dp">
-            <TextView
-                    android:id="@+id/followers_TextView"
-                    android:text="@string/followers"
-                    style="@style/TrophiesTextView"/>
-            <TextView
-                    android:id="@+id/count_followers"
-                    android:text="@string/followers_count"
-                    style="@style/CountTrophiesTextView"/>
-        </LinearLayout>
-
-    </RelativeLayout>
+    <LinearLayout
+            style="@style/TrophiesLinearLayout">
+        <TextView
+                android:text="@string/trophies_count"
+                style="@style/CountTrophiesTextView"
+                android:layout_weight="1"/>
+        <TextView
+                android:text="@string/following_count"
+                style="@style/CountTrophiesTextView"
+                android:layout_weight="1"/>
+        <TextView
+                android:text="@string/followers_count"
+                style="@style/CountTrophiesTextView"
+                android:layout_weight="1"/>
+    </LinearLayout>
 
     <View android:layout_width="wrap_content"
           android:layout_height="2dp"
@@ -101,106 +84,78 @@
             style="@style/NameLinearLayout">
         <TextView
                 android:text="@string/name"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
         <TextView
                 android:text="@string/name_text"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             style="@style/NameLinearLayout">
         <TextView
                 android:text="@string/country"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
         <TextView
                 android:text="@string/country_text"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             style="@style/NameLinearLayout">
         <TextView
                 android:text="@string/postal_code"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
         <TextView
                 android:text="@string/postal_code_text"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             style="@style/NameLinearLayout">
         <TextView
                 android:text="@string/date_of_birth"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
         <TextView
                 android:text="@string/date_of_birth_text"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             style="@style/NameLinearLayout">
         <TextView
                 android:text="@string/gender"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
         <TextView
                 android:text="@string/gender_text"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             style="@style/NameLinearLayout">
         <TextView
                 android:text="@string/height"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
         <TextView
                 android:text="@string/height_text"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             style="@style/NameLinearLayout">
         <TextView
                 android:text="@string/phone"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
         <TextView
                 android:text="@string/phone_text"
-                style="@style/TrophiesTextView"
-                android:layout_weight="1"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"/>
+                style="@style/NameTextView"
+                android:layout_weight="1"/>
     </LinearLayout>
 
     <View
