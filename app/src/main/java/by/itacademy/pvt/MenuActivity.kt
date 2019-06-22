@@ -17,7 +17,7 @@ class MenuActivity : Activity() {
             }
     }
 
-    private fun startDz4(){
+    private fun startDz4() {
         val intent = Intent(this, Dz4Activity::class.java)
         startActivity(intent)
     }
