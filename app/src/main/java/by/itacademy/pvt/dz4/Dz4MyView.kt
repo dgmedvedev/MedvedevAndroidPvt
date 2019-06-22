@@ -15,6 +15,7 @@ class Dz4MyView : View {
     private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val circleClockPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val numberPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val textSize = resources.getDimension(R.dimen.text_size)
 
     private var cx = 0f
     private var cx3 = 0f
@@ -54,7 +55,9 @@ class Dz4MyView : View {
     init {
         circlePaint.color = ContextCompat.getColor(context, R.color.colorAccent)
         circleClockPaint.color = ContextCompat.getColor(context, R.color.colorPrimaryDark)
+
         numberPaint.color = ContextCompat.getColor(context, R.color.colorAccent)
+        numberPaint.textSize = textSize
 
         number3 = "3"
         number6 = "6"
@@ -65,16 +68,24 @@ class Dz4MyView : View {
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
-        val center = Math.min(width, height) / 2f
-        val paddingLeftRight = width*0.10f
+        val paddingLeftRight = if (width <= height) {
+            width * 0.20f
+        } else height * 0.20f
 
         radius = 25f
-        radiusClock = center - paddingLeftRight
+        radiusClock = Math.min(width, height) / 2f - paddingLeftRight
+
         cx = width / 2f
-        
         cy = height / 2f
-        cx3 = radiusClock
-        cy3 = radiusClock + 30
+
+        cx3 = width / 2f + radiusClock + textSize / 2f
+        cy3 = height / 2f + textSize / 2f
+        cx6 = width / 2f - textSize / 4f
+        cy6 = height / 2f + radiusClock + textSize * 1.2f
+        cx9 = width / 2f - radiusClock - textSize
+        cy9 = height / 2f + textSize / 2f
+        cx12 = width / 2f - textSize / 2f
+        cy12 = height / 2f - radiusClock - textSize / 2.2f
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -82,12 +93,12 @@ class Dz4MyView : View {
 
         canvas ?: return
 
-        canvas.drawCircle(cx,cy,radiusClock,circleClockPaint)
-        canvas.drawCircle(cx,cy,radius,circlePaint)
+        canvas.drawCircle(cx, cy, radiusClock, circleClockPaint)
+        canvas.drawCircle(cx, cy, radius, circlePaint)
 
-        canvas.drawText(number3,cx3,cy3,numberPaint)
-        canvas.drawText(number6,cx6,cy6,numberPaint)
-        canvas.drawText(number9,cx9,cy9,numberPaint)
-        canvas.drawText(number12,cx12,cy12,numberPaint)
+        canvas.drawText(number3, cx3, cy3, numberPaint)
+        canvas.drawText(number6, cx6, cy6, numberPaint)
+        canvas.drawText(number9, cx9, cy9, numberPaint)
+        canvas.drawText(number12, cx12, cy12, numberPaint)
     }
 }
