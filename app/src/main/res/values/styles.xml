@@ -38,8 +38,6 @@
     <style name="NameLinearLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">25dp</item>
-        <item name="android:layout_marginEnd">25dp</item>
         <item name="android:weightSum">2</item>
     </style>
 
@@ -49,6 +47,18 @@
         <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">@font/monda_regular</item>
         <item name="android:textColor">@color/gray_dz3</item>
+        <item name="android:paddingStart">25dp</item>
+        <item name="android:paddingEnd">25dp</item>
+    </style>
+
+    <style name="NameTextView_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/monda_bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingStart">5dp</item>
+        <item name="android:paddingEnd">5dp</item>
     </style>
 
 </resources>

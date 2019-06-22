@@ -33,7 +33,7 @@
     <string name="postal_code">ПОЧТОВЫЙ ИНДЕКС</string>
     <string name="date_of_birth">ДАТА РОЖДЕНИЯ</string>
     <string name="gender">ПОЛ</string>
-    <string name="height">ВЫСОТА</string>
+    <string name="height">РОСТ</string>
     <string name="phone">ТЕЛЕФОН</string>
     <string name="name_text">Nial Brockman</string>
     <string name="country_text">США</string>
