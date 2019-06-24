@@ -27,16 +27,19 @@ class MenuActivity : Activity() {
                 startDz2()
             }
     }
-  
+
     private fun startDz0() {
         val intent = Intent(this, Dz0Activity::class.java)
         startActivity(intent)
     }
+
     private fun startDz1() {
         val intent = Intent(this, Dz1Activity::class.java)
         startActivity(intent)
     }
+
     private fun startDz2() {
         val intent = Intent(this, Dz2MenuActivity::class.java)
         startActivity(intent)
+    }
 }
