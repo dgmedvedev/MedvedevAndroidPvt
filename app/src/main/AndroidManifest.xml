@@ -9,9 +9,13 @@
                  android:supportsRtl="true"
                  android:theme="@style/AppTheme"
                  tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <activity android:name="by.itacademy.pvt.dz0.Dz0Activity"/>
+        <activity android:name="by.itacademy.pvt.dz1.Dz1Activity"/>
         <activity android:name="by.itacademy.pvt.dz2.Dz2MenuActivity"/>
         <activity android:name="by.itacademy.pvt.dz2.Dz2Activity1"/>
         <activity android:name="by.itacademy.pvt.dz2.Dz2Activity2"/>
+
         <activity android:name="by.itacademy.pvt.MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
