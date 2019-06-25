@@ -20,10 +20,14 @@ class Dz4MyView : View {
     private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val arrowPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val arrowSecondPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     private val pathArrowH = Path()
     private val pathArrowM = Path()
+
     private val date = Date()
+
+    private val numberSize = resources.getDimension(R.dimen.number_size)
     private val textSize = resources.getDimension(R.dimen.text_size)
 
     private var cx = 0f
@@ -36,6 +40,8 @@ class Dz4MyView : View {
     private var cy6 = 0f
     private var cy9 = 0f
     private var cy12 = 0f
+    private var cxText = 0f
+    private var cyText = 0f
     private var radius = 0f
     private var radiusClock = 0f
     private var cyCentreLine = 0f
@@ -44,12 +50,7 @@ class Dz4MyView : View {
     private var number6: String = ""
     private var number9: String = ""
     private var number12: String = ""
-
-    var text: String? = null
-        set(value) {
-            field = value
-            invalidate()
-        }
+    private var text: String = ""
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -66,17 +67,22 @@ class Dz4MyView : View {
         circlePaint.color = ContextCompat.getColor(context, R.color.colorAccent)
         circleClockPaint.color = ContextCompat.getColor(context, R.color.colorPrimaryDark)
         linePaint.color = ContextCompat.getColor(context, R.color.AustriaRed)
-        linePaint.strokeWidth = 7f
         arrowSecondPaint.color = ContextCompat.getColor(context, R.color.AustriaRed)
-        arrowSecondPaint.strokeWidth = 2f
         numberPaint.color = ContextCompat.getColor(context, R.color.colorAccent)
-        numberPaint.textSize = textSize
         arrowPaint.color = ContextCompat.getColor(context, R.color.menu)
+        textPaint.color = ContextCompat.getColor(context, R.color.white)
+
+        linePaint.strokeWidth = 7f
+        arrowSecondPaint.strokeWidth = 3f
+
+        numberPaint.textSize = numberSize
+        textPaint.textSize = textSize
 
         number3 = "3"
         number6 = "6"
         number9 = "9"
         number12 = "12"
+        text = "TISSOT"
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -86,27 +92,30 @@ class Dz4MyView : View {
             width * 0.20f
         } else height * 0.20f
 
-        radius = 25f
+        radius = 15f
         radiusClock = Math.min(width, height) / 2f - paddingLeftRight
 
         cx = width / 2f
         cy = height / 2f
         cyCentreLine = height / 2f - radiusClock
 
-        cx3 = width / 2f + radiusClock + textSize / 2f
-        cy3 = height / 2f + textSize / 2f
-        cx6 = width / 2f - textSize / 4f
-        cy6 = height / 2f + radiusClock + textSize * 1.2f
-        cx9 = width / 2f - radiusClock - textSize
-        cy9 = height / 2f + textSize / 2f
-        cx12 = width / 2f - textSize / 2f
-        cy12 = height / 2f - radiusClock - textSize / 2.2f
+        cx3 = width / 2f + radiusClock + numberSize / 2f
+        cy3 = height / 2f + numberSize / 2f
+        cx6 = width / 2f - numberSize / 4f
+        cy6 = height / 2f + radiusClock + numberSize * 1.2f
+        cx9 = width / 2f - radiusClock - numberSize
+        cy9 = height / 2f + numberSize / 2f
+        cx12 = width / 2f - numberSize / 2f
+        cy12 = height / 2f - radiusClock - numberSize / 2.2f
+        cxText = width / 2f - radiusClock / 3f
+        cyText = height / 2f - radiusClock / 2f
 
         pathArrowH.moveTo(cx, cy)
         pathArrowH.lineTo(cx + 25, cy - radiusClock + 100)
         pathArrowH.lineTo(cx, cy - radiusClock + 75)
         pathArrowH.lineTo(cx - 25, cy - radiusClock + 100)
         pathArrowH.close()
+
         pathArrowM.moveTo(cx, cy)
         pathArrowM.lineTo(cx + 15, cy - radiusClock + 40)
         pathArrowM.lineTo(cx, cy - radiusClock + 20)
@@ -131,6 +140,7 @@ class Dz4MyView : View {
         canvas.drawText(number6, cx6, cy6, numberPaint)
         canvas.drawText(number9, cx9, cy9, numberPaint)
         canvas.drawText(number12, cx12, cy12, numberPaint)
+        canvas.drawText(text, cxText, cyText, textPaint)
 
         canvas.rotate(date.hours * 30f, cx, cy)
         canvas.drawPath(pathArrowH, arrowPaint)
