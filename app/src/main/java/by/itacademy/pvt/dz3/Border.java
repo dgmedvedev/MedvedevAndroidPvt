@@ -1,13 +1,17 @@
 package by.itacademy.pvt.dz3;
 
-import android.graphics.*;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.graphics.Color;
 
 public class Border implements com.squareup.picasso.Transformation {
     private final int radius;
-    private final int margin;  // dp
+    private final int margin;
 
-    // radius is corner radii in dp
-    // margin is the board in dp
     public Border(final int radius, final int margin) {
         this.radius = radius;
         this.margin = margin;
@@ -15,7 +19,6 @@ public class Border implements com.squareup.picasso.Transformation {
 
     @Override
     public Bitmap transform(final Bitmap source) {
-
 
         final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setShader(new BitmapShader(source, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));

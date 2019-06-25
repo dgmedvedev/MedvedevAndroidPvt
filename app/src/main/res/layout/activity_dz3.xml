@@ -145,7 +145,8 @@
                     android:layout_weight="1"/>
         </LinearLayout>
         <LinearLayout
-                style="@style/NameLinearLayout">
+                style="@style/NameLinearLayout"
+                android:layout_marginBottom="25dp">
             <TextView
                     android:text="@string/phone"
                     style="@style/NameTextView"
