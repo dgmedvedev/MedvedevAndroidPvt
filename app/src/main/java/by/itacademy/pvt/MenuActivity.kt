@@ -8,6 +8,7 @@ import android.widget.Button
 import by.itacademy.pvt.dz0.Dz0Activity
 import by.itacademy.pvt.dz1.Dz1Activity
 import by.itacademy.pvt.dz2.Dz2MenuActivity
+import by.itacademy.pvt.dz5.Dz5Activity
 
 class MenuActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,10 @@ class MenuActivity : Activity() {
             .setOnClickListener {
                 startDz2()
             }
+        findViewById<Button>(R.id.dz5)
+            .setOnClickListener {
+                startDz5()
+            }
     }
 
     private fun startDz0() {
@@ -40,6 +45,11 @@ class MenuActivity : Activity() {
 
     private fun startDz2() {
         val intent = Intent(this, Dz2MenuActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun startDz5() {
+        val intent = Intent(this, Dz5Activity::class.java)
         startActivity(intent)
     }
 }

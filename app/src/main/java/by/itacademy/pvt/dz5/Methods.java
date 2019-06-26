@@ -2,16 +2,16 @@ package by.itacademy.pvt.dz5;
 
 class Methods {
 
-    static double[] foundAngles(double[] arr) {
-        double sumArray = 0;
+    static float[] foundAngles(int [] arr) {
+        float sumArray = 0;
         int sizeArray = arr.length;
-        double[] arrayAngles = new double[sizeArray];
+        float[] arrayAngles = new float[sizeArray];
 
-        for (double i : arr) {
+        for (int i : arr) {
             sumArray += i;
         }
         for (int i = 0; i < arr.length; i++) {
-            double angle = (arr[i] * 360) / sumArray;
+            float angle = ((float)arr[i] * 360) / sumArray;
             arrayAngles[i] = angle;
         }
         return arrayAngles;
