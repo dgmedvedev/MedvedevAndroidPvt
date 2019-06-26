@@ -14,7 +14,10 @@ import by.itacademy.pvt.R
 class MyViewDz5 : View {
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val paint1 = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val paintCircle = Paint(Paint.ANTI_ALIAS_FLAG)
     private val path = Path()
+    private val path1 = Path()
 
     private var cx = 0f
     private var cy = 0f
@@ -42,6 +45,8 @@ class MyViewDz5 : View {
         arrayAngle = Methods.foundAngles(myArray)
 
         paint.color = ContextCompat.getColor(context, R.color.colorPrimary)
+        paint1.color = ContextCompat.getColor(context, R.color.colorAccent)
+        paintCircle.color = ContextCompat.getColor(context, R.color.colorPrimaryDark)
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldwidth: Int, oldheiht: Int) {
@@ -54,6 +59,16 @@ class MyViewDz5 : View {
         cyLine = (cy - radius * Math.cos(Math.toRadians(arrayAngle[0].toDouble()))).toFloat()
         cxLine1 = (radius * Math.sin(Math.toRadians(arrayAngle[1].toDouble()))).toFloat() + cx
         cyLine1 = (cy - radius * Math.cos(Math.toRadians(arrayAngle[1].toDouble()))).toFloat()
+
+        path.moveTo(cx, cy)
+        path.lineTo(cxLine, cyLine)
+        path.lineTo(cx, cy - radius)
+        path.close()
+
+        path1.moveTo(cx, cy)
+        path1.lineTo(cxLine1, cyLine1)
+        path1.lineTo(cx, cy - radius)
+        path1.close()
     }
 
     constructor(context: Context?) : super(context)
@@ -70,19 +85,6 @@ class MyViewDz5 : View {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas ?: return
-
-        path.moveTo(cx, cy)
-        path.lineTo(cxLine, cyLine)
-        path.lineTo(cx, cy - radius)
-        path.close()
-
-        canvas.drawPath(path, paint)
-        canvas.rotate(arrayAngle[0])
-
-        path.moveTo(cx, cy)
-        path.lineTo(cxLine1, cyLine1)
-        path.lineTo(cx, cy - radius)
-        path.close()
 
         canvas.drawPath(path, paint)
         canvas.rotate(arrayAngle[1])
