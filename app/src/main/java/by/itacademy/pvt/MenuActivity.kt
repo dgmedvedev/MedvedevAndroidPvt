@@ -8,7 +8,7 @@ import android.widget.Button
 import by.itacademy.pvt.dz0.Dz0Activity
 import by.itacademy.pvt.dz1.Dz1Activity
 import by.itacademy.pvt.dz2.Dz2MenuActivity
-import by.itacademy.pvt.dz5.part1.Dz5Activity
+import by.itacademy.pvt.dz5.Dz5MenuActivity
 
 class MenuActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,7 @@ class MenuActivity : Activity() {
     }
 
     private fun startDz5() {
-        val intent = Intent(this, Dz5Activity::class.java)
+        val intent = Intent(this, Dz5MenuActivity::class.java)
         startActivity(intent)
     }
 }

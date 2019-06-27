@@ -15,7 +15,9 @@
         <activity android:name="by.itacademy.pvt.dz2.Dz2MenuActivity"/>
         <activity android:name="by.itacademy.pvt.dz2.Dz2Activity1"/>
         <activity android:name="by.itacademy.pvt.dz2.Dz2Activity2"/>
-        <activity android:name="by.itacademy.pvt.dz5.part1.Dz5Activity"/>
+        <activity android:name="by.itacademy.pvt.dz5.part1.Dz5Activity1"/>
+        <activity android:name="by.itacademy.pvt.dz5.part2.Dz5Activity2"/>
+        <activity android:name="by.itacademy.pvt.dz5.Dz5MenuActivity"/>
 
         <activity android:name="by.itacademy.pvt.MenuActivity">
             <intent-filter>
