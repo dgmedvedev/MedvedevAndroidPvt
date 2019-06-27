@@ -1,4 +1,4 @@
-package by.itacademy.pvt.dz5
+package by.itacademy.pvt.dz5.part1
 
 import android.app.Activity
 import android.os.Bundle
