@@ -2,8 +2,8 @@ package by.itacademy.pvt.dz5
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.Path
 import android.graphics.RectF
 import android.os.Build
 import android.util.AttributeSet
@@ -11,28 +11,32 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import by.itacademy.pvt.R
+import java.util.Random
 
 class MyViewDz5 : View {
 
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val paint1 = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val paintCircle = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val path = Path()
-    private val path1 = Path()
+    private val paintSector = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val paintLine = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val paintText = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val paintCircleOnLine = Paint(Paint.ANTI_ALIAS_FLAG)
+    private var random = Random()
+
     private val rectF = RectF()
 
     private var cx = 0f
     private var cy = 0f
-    private var cxLine = 0f
-    private var cyLine = 0f
-    private var cxLine1 = 0f
-    private var cyLine1 = 0f
-    private var radius = 0f
-    private var myArray = intArrayOf(10, 90)
-    private var arrayAngle = FloatArray(myArray.size)
+    private var cxLineStart = 0f
+    private var cyLineStart = 0f
+    private var cxLineEnd = 0f
+    private var cyLineEnd = 0f
 
-    private var paddingLeftRight = 0f
-    private var paddingTopBottom = 0f
+    private var radius = 0f
+    private var radiusCircleOnLine = 0f
+    private var startAngle = 0f
+    private var centreAngle = 0f
+
+    private var myArray = intArrayOf(10, 50, 40)
+    private var arrayAngle = FloatArray(myArray.size)
 
 /*
     var sizeArray: Int = 0
@@ -47,11 +51,11 @@ class MyViewDz5 : View {
     */
 
     init {
-        arrayAngle = Methods.foundAngles(myArray)
-
-        paint.color = ContextCompat.getColor(context, R.color.colorPrimary)
-        paint1.color = ContextCompat.getColor(context, R.color.colorAccent)
-        paintCircle.color = ContextCompat.getColor(context, R.color.colorPrimaryDark)
+        arrayAngle = findAngles(myArray)
+        paintLine.color = ContextCompat.getColor(context, R.color.colorPrimary)
+        paintText.color = ContextCompat.getColor(context, R.color.colorPrimaryDark)
+        paintText.textSize = resources.getDimension(R.dimen.textSector)
+        paintCircleOnLine.color = ContextCompat.getColor(context, R.color.colorPrimary)
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldwidth: Int, oldheiht: Int) {
@@ -59,21 +63,11 @@ class MyViewDz5 : View {
 
         cx = width / 2f
         cy = height / 2f
-        radius = Math.min(width, height) / 2f
-        cxLine = (radius * Math.sin(Math.toRadians(arrayAngle[0].toDouble()))).toFloat() + cx
-        cyLine = (cy - radius * Math.cos(Math.toRadians(arrayAngle[0].toDouble()))).toFloat()
-        cxLine1 = (radius * Math.sin(Math.toRadians(arrayAngle[1].toDouble()))).toFloat() + cx
-        cyLine1 = (cy - radius * Math.cos(Math.toRadians(arrayAngle[1].toDouble()))).toFloat()
-
-        path.moveTo(cx, cy)
-        path.lineTo(cx, cy - radius)
-        path.lineTo(cxLine, cyLine)
-        path.close()
-
-        path1.moveTo(cx, cy)
-        path1.lineTo(cxLine1, cyLine1)
-        path1.lineTo(cx, cy - radius)
-        path1.close()
+        radius = Math.min(width, height) / 4f
+        radiusCircleOnLine = radius * 0.05f
+        paintLine.strokeWidth = radiusCircleOnLine * 0.2f
+        val paddingLeftRight = (width - 2 * radius) / 2
+        val paddingTopBottom = (height - 2 * radius) / 2
 
         rectF.left = paddingLeftRight
         rectF.top = paddingTopBottom
@@ -96,7 +90,45 @@ class MyViewDz5 : View {
         super.onDraw(canvas)
         canvas ?: return
 
-        canvas.drawPath(path, paint)
-        canvas.rotate(75f, cx, cy)
+        for (i in arrayAngle.indices) {
+            centreAngle = arrayAngle[i] / 2f + startAngle
+            paintSector.color = Color.argb(
+                255, random.nextInt(256),
+                random.nextInt(256), random.nextInt(256)
+            )
+            canvas.drawArc(rectF, startAngle, arrayAngle[i], true, paintSector)
+            cxLineStart = (radius * Math.cos(Math.toRadians((centreAngle).toDouble()))).toFloat() + cx
+            cyLineStart = (cy + radius * Math.sin(Math.toRadians((centreAngle).toDouble()))).toFloat()
+            cxLineEnd = (radius * 1.2f * Math.cos(Math.toRadians((centreAngle).toDouble()))).toFloat() + cx
+            cyLineEnd = (cy + radius * 1.2f * Math.sin(Math.toRadians((centreAngle).toDouble()))).toFloat()
+            canvas.drawLine(cxLineStart, cyLineStart, cxLineEnd, cyLineEnd, paintLine)
+            canvas.drawCircle(cxLineEnd, cyLineEnd, radiusCircleOnLine, paintCircleOnLine)
+            startAngle += arrayAngle[i]
+
+            if (centreAngle > 90 && centreAngle < 270) {
+                if (centreAngle > 180)
+                    canvas.drawText(myArray[i].toString(), cxLineEnd - 50, cyLineEnd - 20, paintText)
+                else canvas.drawText(myArray[i].toString(), cxLineEnd - 50, cyLineEnd + 50, paintText)
+            } else {
+                if (centreAngle <= 90)
+                    canvas.drawText(myArray[i].toString(), cxLineEnd + 10, cyLineEnd + 50, paintText)
+                else canvas.drawText(myArray[i].toString(), cxLineEnd + 10, cyLineEnd - 20, paintText)
+            }
+        }
+    }
+
+    private fun findAngles(array: IntArray): FloatArray {
+        var sumArray = 0f
+        val sizeArray = array.size
+        val arrayAngles = FloatArray(sizeArray)
+
+        for (angle in array) {
+            sumArray += angle
+        }
+        for (i in array.indices) {
+            val angle = array[i] * 360 / sumArray
+            arrayAngles[i] = angle
+        }
+        return arrayAngles
     }
 }
