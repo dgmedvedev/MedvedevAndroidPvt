@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.RectF
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
@@ -18,6 +19,7 @@ class MyViewDz5 : View {
     private val paintCircle = Paint(Paint.ANTI_ALIAS_FLAG)
     private val path = Path()
     private val path1 = Path()
+    private val rectF = RectF()
 
     private var cx = 0f
     private var cy = 0f
@@ -26,8 +28,11 @@ class MyViewDz5 : View {
     private var cxLine1 = 0f
     private var cyLine1 = 0f
     private var radius = 0f
-    private var myArray = intArrayOf(1, 2, 2)
+    private var myArray = intArrayOf(10, 90)
     private var arrayAngle = FloatArray(myArray.size)
+
+    private var paddingLeftRight = 0f
+    private var paddingTopBottom = 0f
 
 /*
     var sizeArray: Int = 0
@@ -61,14 +66,19 @@ class MyViewDz5 : View {
         cyLine1 = (cy - radius * Math.cos(Math.toRadians(arrayAngle[1].toDouble()))).toFloat()
 
         path.moveTo(cx, cy)
-        path.lineTo(cxLine, cyLine)
         path.lineTo(cx, cy - radius)
+        path.lineTo(cxLine, cyLine)
         path.close()
 
         path1.moveTo(cx, cy)
         path1.lineTo(cxLine1, cyLine1)
         path1.lineTo(cx, cy - radius)
         path1.close()
+
+        rectF.left = paddingLeftRight
+        rectF.top = paddingTopBottom
+        rectF.right = width - paddingLeftRight
+        rectF.bottom = height - paddingTopBottom
     }
 
     constructor(context: Context?) : super(context)
@@ -87,6 +97,6 @@ class MyViewDz5 : View {
         canvas ?: return
 
         canvas.drawPath(path, paint)
-        canvas.rotate(arrayAngle[1])
+        canvas.rotate(75f, cx, cy)
     }
 }
