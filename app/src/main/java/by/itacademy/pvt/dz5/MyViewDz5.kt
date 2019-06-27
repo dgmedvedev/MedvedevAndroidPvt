@@ -19,8 +19,8 @@ class MyViewDz5 : View {
     private val paintLine = Paint(Paint.ANTI_ALIAS_FLAG)
     private val paintText = Paint(Paint.ANTI_ALIAS_FLAG)
     private val paintCircleOnLine = Paint(Paint.ANTI_ALIAS_FLAG)
-    private var random = Random()
 
+    private var random = Random()
     private val rectF = RectF()
 
     private var cx = 0f
@@ -35,23 +35,21 @@ class MyViewDz5 : View {
     private var startAngle = 0f
     private var centreAngle = 0f
 
-    private var myArray = intArrayOf(10, 50, 40)
-    private var arrayAngle = FloatArray(myArray.size)
-
-/*
-    var sizeArray: Int = 0
+    var sizeArray = 0
         set(value) {
             field = value
             invalidate()
         }
-    private var arrays = IntArray(sizeArray)
-    constructor(context: Context?, array: IntArray) : super(context) {
-        this.arrays = array
-    }
-    */
+
+    var myArray: IntArray = IntArray(sizeArray)
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    private var arrayAngle = FloatArray(sizeArray)
 
     init {
-        arrayAngle = findAngles(myArray)
         paintLine.color = ContextCompat.getColor(context, R.color.colorPrimary)
         paintText.color = ContextCompat.getColor(context, R.color.colorPrimaryDark)
         paintText.textSize = resources.getDimension(R.dimen.textSector)
@@ -66,25 +64,22 @@ class MyViewDz5 : View {
         radius = Math.min(width, height) / 4f
         radiusCircleOnLine = radius * 0.05f
         paintLine.strokeWidth = radiusCircleOnLine * 0.2f
-        val paddingLeftRight = (width - 2 * radius) / 2
-        val paddingTopBottom = (height - 2 * radius) / 2
+        val paddingLeftRight = (width - 2 * radius) / 2f
+        val paddingTopBottom = (height - 2 * radius) / 2f
 
         rectF.left = paddingLeftRight
         rectF.top = paddingTopBottom
         rectF.right = width - paddingLeftRight
         rectF.bottom = height - paddingTopBottom
+
+        arrayAngle = findAngles(myArray)
     }
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(
-        context,
-        attrs,
-        defStyleAttr,
-        defStyleRes
-    )
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)

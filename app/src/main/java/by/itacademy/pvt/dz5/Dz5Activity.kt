@@ -9,8 +9,8 @@ class Dz5Activity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dz5)
 
-        //   val array: IntArray = intArrayOf(1,2,3,4,5)
-        //   val view = findViewById<MyViewDz5>(R.id.myViewDz5)
-        //   val view1: MyViewDz5 = MyViewDz5(context = null, array = array)
+        val myViewDz5 = findViewById<MyViewDz5>(R.id.myViewDz5)
+        myViewDz5.myArray = intArrayOf(10, 20, 30, 40, 50)
+        myViewDz5.sizeArray = myViewDz5.myArray.size
     }
 }
