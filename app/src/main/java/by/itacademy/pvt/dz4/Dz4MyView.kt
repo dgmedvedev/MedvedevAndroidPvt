@@ -27,8 +27,19 @@ class Dz4MyView : View {
 
     private val date = Date()
 
-    private val numberSize = resources.getDimension(R.dimen.number_size)
-    private val textSize = resources.getDimension(R.dimen.text_size)
+    private val rotateArrowsSecAndMin = 6f
+    private val rotateArrowHour = 30f
+
+    private var numberSize = 0f
+    private var textSize = 0f
+    private var widthArrowHour = 0f
+    private var edgeArrowHour = 0f
+    private var lengthArrowHour = 0f
+    private var widthArrowMinute = 0f
+    private var edgeArrowMinute = 0f
+    private var lengthArrowMinute = 0f
+    private var lengthArrowSecond = 0f
+    private var lengthPointerHour = 0f
 
     private var cx = 0f
     private var cx3 = 0f
@@ -46,11 +57,11 @@ class Dz4MyView : View {
     private var radiusClock = 0f
     private var cyCentreLine = 0f
 
-    private var number3: String = ""
-    private var number6: String = ""
-    private var number9: String = ""
-    private var number12: String = ""
-    private var text: String = ""
+    private val number3: String = "3"
+    private val number6: String = "6"
+    private val number9: String = "9"
+    private val number12: String = "12"
+    private val text: String = resources.getString(R.string.login_clock)
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -75,14 +86,21 @@ class Dz4MyView : View {
         linePaint.strokeWidth = 7f
         arrowSecondPaint.strokeWidth = 3f
 
+        numberSize = resources.getDimension(R.dimen.number_size)
+        textSize = resources.getDimension(R.dimen.text_size)
+
         numberPaint.textSize = numberSize
         textPaint.textSize = textSize
 
-        number3 = "3"
-        number6 = "6"
-        number9 = "9"
-        number12 = "12"
-        text = "TISSOT"
+        widthArrowHour = resources.getDimension(R.dimen.width_arrow_hour)
+        edgeArrowHour = resources.getDimension(R.dimen.edge_arrow_hour)
+        lengthArrowHour = resources.getDimension(R.dimen.length_arrow_hour)
+        widthArrowMinute = resources.getDimension(R.dimen.width_arrow_minute)
+        edgeArrowMinute = resources.getDimension(R.dimen.edge_arrow_minute)
+        lengthArrowMinute = resources.getDimension(R.dimen.length_arrow_minute)
+        lengthArrowSecond = resources.getDimension(R.dimen.length_arrow_second)
+
+        lengthPointerHour = resources.getDimension(R.dimen.length_pointer_hour)
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -111,15 +129,15 @@ class Dz4MyView : View {
         cyText = height / 2f - radiusClock / 2f
 
         pathArrowH.moveTo(cx, cy)
-        pathArrowH.lineTo(cx + 25, cy - radiusClock + 100)
-        pathArrowH.lineTo(cx, cy - radiusClock + 75)
-        pathArrowH.lineTo(cx - 25, cy - radiusClock + 100)
+        pathArrowH.lineTo(cx + widthArrowHour, cy - radiusClock + edgeArrowHour)
+        pathArrowH.lineTo(cx, cy - radiusClock + lengthArrowHour)
+        pathArrowH.lineTo(cx - widthArrowHour, cy - radiusClock + edgeArrowHour)
         pathArrowH.close()
 
         pathArrowM.moveTo(cx, cy)
-        pathArrowM.lineTo(cx + 15, cy - radiusClock + 40)
-        pathArrowM.lineTo(cx, cy - radiusClock + 20)
-        pathArrowM.lineTo(cx - 15, cy - radiusClock + 40)
+        pathArrowM.lineTo(cx + widthArrowMinute, cy - radiusClock + edgeArrowMinute)
+        pathArrowM.lineTo(cx, cy - radiusClock + lengthArrowMinute)
+        pathArrowM.lineTo(cx - widthArrowMinute, cy - radiusClock + edgeArrowMinute)
         pathArrowM.close()
     }
 
@@ -132,8 +150,11 @@ class Dz4MyView : View {
         canvas.drawCircle(cx, cy, radius, circlePaint)
 
         for (i in 1..12) {
-            canvas.drawLine(cx, cyCentreLine + 20, cx, cyCentreLine - 20, linePaint)
-            canvas.rotate(30f, cx, cy)
+            canvas.drawLine(
+                cx, cyCentreLine + lengthPointerHour,
+                cx, cyCentreLine - lengthPointerHour, linePaint
+            )
+            canvas.rotate(rotateArrowHour, cx, cy)
         }
 
         canvas.drawText(number3, cx3, cy3, numberPaint)
@@ -142,15 +163,18 @@ class Dz4MyView : View {
         canvas.drawText(number12, cx12, cy12, numberPaint)
         canvas.drawText(text, cxText, cyText, textPaint)
 
-        canvas.rotate(date.hours * 30f, cx, cy)
+        canvas.rotate(date.hours * rotateArrowHour, cx, cy)
         canvas.drawPath(pathArrowH, arrowPaint)
-        canvas.rotate(-date.hours * 30f, cx, cy)
+        canvas.rotate(-date.hours * rotateArrowHour, cx, cy)
 
-        canvas.rotate(date.minutes * 6f, cx, cy)
+        canvas.rotate(date.minutes * rotateArrowsSecAndMin, cx, cy)
         canvas.drawPath(pathArrowM, arrowPaint)
-        canvas.rotate(-date.minutes * 6f, cx, cy)
+        canvas.rotate(-date.minutes * rotateArrowsSecAndMin, cx, cy)
 
-        canvas.rotate(date.seconds * 6f, cx, cy)
-        canvas.drawLine(cx, cy + 20, cx, cyCentreLine + 30, arrowSecondPaint)
+        canvas.rotate(date.seconds * rotateArrowsSecAndMin, cx, cy)
+        canvas.drawLine(
+            cx, cy + lengthArrowSecond,
+            cx, cyCentreLine + lengthArrowSecond, arrowSecondPaint
+        )
     }
 }

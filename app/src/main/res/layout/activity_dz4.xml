@@ -6,6 +6,6 @@
     <by.itacademy.pvt.dz4.Dz4MyView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-    android:background="@color/menu"/>
+            android:background="@color/menu"/>
 
 </LinearLayout>

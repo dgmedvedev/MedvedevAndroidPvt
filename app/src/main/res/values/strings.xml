@@ -21,5 +21,6 @@
     <string name="download_picture">Download picture</string>
     <string name="forgot"><u>Forgot your username/password?</u>></string>
     <string name="create_account">CREATE ACCOUNT</string>
+    <string name="login_clock" translatable="false">TISSOT</string>
 
 </resources>
