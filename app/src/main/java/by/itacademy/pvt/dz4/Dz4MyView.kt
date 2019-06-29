@@ -14,7 +14,7 @@ import java.util.Date
 
 class Dz4MyView : View {
 
-    private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val circleSmallPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val circleClockPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val numberPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -53,7 +53,7 @@ class Dz4MyView : View {
     private var cy12 = 0f
     private var cxText = 0f
     private var cyText = 0f
-    private var radius = 0f
+    private var radiusSmallCircle = 0f
     private var radiusClock = 0f
     private var cyCentreLine = 0f
 
@@ -61,7 +61,7 @@ class Dz4MyView : View {
     private val number6: String = "6"
     private val number9: String = "9"
     private val number12: String = "12"
-    private val text: String = resources.getString(R.string.login_clock)
+    private val nameClock: String = resources.getString(R.string.name_clock)
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -75,7 +75,7 @@ class Dz4MyView : View {
     )
 
     init {
-        circlePaint.color = ContextCompat.getColor(context, R.color.colorAccent)
+        circleSmallPaint.color = ContextCompat.getColor(context, R.color.colorAccent)
         circleClockPaint.color = ContextCompat.getColor(context, R.color.colorPrimaryDark)
         linePaint.color = ContextCompat.getColor(context, R.color.AustriaRed)
         arrowSecondPaint.color = ContextCompat.getColor(context, R.color.AustriaRed)
@@ -110,7 +110,7 @@ class Dz4MyView : View {
             width * 0.20f
         } else height * 0.20f
 
-        radius = 15f
+        radiusSmallCircle = resources.getDimension(R.dimen.radius_small_circle)
         radiusClock = Math.min(width, height) / 2f - paddingLeftRight
 
         cx = width / 2f
@@ -147,7 +147,7 @@ class Dz4MyView : View {
         canvas ?: return
 
         canvas.drawCircle(cx, cy, radiusClock, circleClockPaint)
-        canvas.drawCircle(cx, cy, radius, circlePaint)
+        canvas.drawCircle(cx, cy, radiusSmallCircle, circleSmallPaint)
 
         for (i in 1..12) {
             canvas.drawLine(
@@ -161,7 +161,7 @@ class Dz4MyView : View {
         canvas.drawText(number6, cx6, cy6, numberPaint)
         canvas.drawText(number9, cx9, cy9, numberPaint)
         canvas.drawText(number12, cx12, cy12, numberPaint)
-        canvas.drawText(text, cxText, cyText, textPaint)
+        canvas.drawText(nameClock, cxText, cyText, textPaint)
 
         canvas.rotate(date.hours * rotateArrowHour, cx, cy)
         canvas.drawPath(pathArrowH, arrowPaint)
