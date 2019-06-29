@@ -7,17 +7,36 @@ import by.itacademy.pvt.R
 import android.graphics.drawable.AnimationDrawable
 
 class Dz5Activity2 : Activity() {
+    private lateinit var imageViewFilling: ImageView
+    private lateinit var imageViewEmptying: ImageView
+    private lateinit var imageViewSelector: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity2_dz5)
 
-        val mImageViewEmptying = findViewById<ImageView>(R.id.imageview_animation_list_emptying)
-        (mImageViewEmptying.background as AnimationDrawable).start()
+        imageViewFilling = findViewById(R.id.imageview_animation_list_filling)
+        imageViewEmptying = findViewById(R.id.imageview_animation_list_emptying)
+        imageViewSelector = findViewById(R.id.imageview_animated_selector)
+    }
 
-        val mImageViewEmptying1 = findViewById<ImageView>(R.id.imageview_animation_list_filling)
-        (mImageViewEmptying1.background as AnimationDrawable).start()
+    override fun onResume() {
+        super.onResume()
 
-        val mImageViewSelector = findViewById<ImageView>(R.id.imageview_animated_selector)
-        mImageViewSelector.setOnClickListener { mImageViewSelector.isActivated = !mImageViewSelector.isActivated }
+        (imageViewFilling.background as AnimationDrawable).start()
+
+        (imageViewEmptying.background as AnimationDrawable).start()
+
+        imageViewSelector.setOnClickListener {
+            imageViewSelector.isActivated = !imageViewSelector.isActivated
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        (imageViewFilling.background as AnimationDrawable).stop()
+
+        (imageViewEmptying.background as AnimationDrawable).stop()
     }
 }
