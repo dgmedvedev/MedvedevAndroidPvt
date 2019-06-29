@@ -21,5 +21,28 @@
     <string name="download_picture">Download picture</string>
     <string name="forgot"><u>Forgot your username/password?</u>></string>
     <string name="create_account">CREATE ACCOUNT</string>
+    <string name="dylan_conner">Dylan Conner</string>
+    <string name="trophies">TROPHIES</string>
+    <string name="following">FOLLOWING</string>
+    <string name="followers">FOLLOWERS</string>
+    <string name="trophies_count">4</string>
+    <string name="following_count">54</string>
+    <string name="followers_count">12</string>
+    <string name="name">NAME</string>
+    <string name="country">COUNTRY</string>
+    <string name="postal_code">POSTAL CODE</string>
+    <string name="date_of_birth">DATE OF BIRTH</string>
+    <string name="gender">GENDER</string>
+    <string name="height">HEIGHT</string>
+    <string name="phone">PHONE</string>
+    <string name="name_text">Nial Brockman</string>
+    <string name="country_text">USA</string>
+    <string name="postal_code_text">60604</string>
+    <string name="date_of_birth_text">Feb.21,2000</string>
+    <string name="gender_text">Male</string>
+    <string name="height_text">"6'1''"</string>
+    <string name="phone_text">(781)547–3320</string>
+
+
 
 </resources>

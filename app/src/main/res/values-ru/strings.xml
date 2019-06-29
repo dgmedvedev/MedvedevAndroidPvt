@@ -21,5 +21,26 @@
     <string name="download_picture">Загрузить картинку</string>
     <string name="forgot"><u>Забыли имя пользователя/пароль?</u></string>
     <string name="create_account">Создать учетную запись</string>
+    <string name="dylan_conner">Dylan Conner</string>
+    <string name="trophies">TROPHIES</string>
+    <string name="following">FOLLOWING</string>
+    <string name="followers">FOLLOWERS</string>
+    <string name="trophies_count">4</string>
+    <string name="following_count">54</string>
+    <string name="followers_count">12</string>
+    <string name="name">ИМЯ</string>
+    <string name="country">СТРАНА</string>
+    <string name="postal_code">ПОЧТОВЫЙ ИНДЕКС</string>
+    <string name="date_of_birth">ДАТА РОЖДЕНИЯ</string>
+    <string name="gender">ПОЛ</string>
+    <string name="height">РОСТ</string>
+    <string name="phone">ТЕЛЕФОН</string>
+    <string name="name_text">Nial Brockman</string>
+    <string name="country_text">США</string>
+    <string name="postal_code_text">60604</string>
+    <string name="date_of_birth_text">21 февраля 2000</string>
+    <string name="gender_text">Мужчина</string>
+    <string name="height_text">"6'1''"</string>
+    <string name="phone_text">(781)547–3320</string>
 
 </resources>
