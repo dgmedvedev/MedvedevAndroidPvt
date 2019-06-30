@@ -43,5 +43,14 @@
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimary"
             android:text="@string/dz3"/>
+    <Button
+            android:id="@+id/dz6"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/dz6"/>
 
 </LinearLayout>

@@ -43,6 +43,5 @@
     <string name="height_text">"6'1''"</string>
     <string name="phone_text">(781)547–3320</string>
 
-
-
+    <string name="name_student">Name Student</string>
 </resources>
