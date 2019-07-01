@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import by.itacademy.pvt.R
 
 class Dz6ListAdapter(private val items: List<Student>, private val listener: ClickListener) :
-    RecyclerView.Adapter<Dz6ListViewHolder>() {
+        RecyclerView.Adapter<Dz6ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Dz6ListViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_dz6_students, parent, false)
+                .inflate(R.layout.item_dz6_students, parent, false)
 
         val holder = Dz6ListViewHolder(view)
 
