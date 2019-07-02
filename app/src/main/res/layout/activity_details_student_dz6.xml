@@ -27,8 +27,7 @@
         <TextView
             android:id="@+id/name_details_student"
             style="@style/NameStudentTextView_text"
-            android:layout_weight="3"
-            android:text="@string/name_text" />
+            android:layout_weight="3" />
     </LinearLayout>
 
     <LinearLayout
@@ -48,7 +47,7 @@
             android:text="32" />
     </LinearLayout>
 
-    <view
+    <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
