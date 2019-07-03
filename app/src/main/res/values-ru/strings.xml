@@ -49,5 +49,6 @@
     <string name="edit">Изменить</string>
     <string name="save">Сохранить</string>
     <string name="anonymous">Безымянный</string>
+    <string name="image_not_found">Изображение не найдено</string>
 
 </resources>

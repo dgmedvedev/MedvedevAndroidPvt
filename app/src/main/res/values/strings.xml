@@ -49,5 +49,6 @@
     <string name="edit">Edit</string>
     <string name="save">Save</string>
     <string name="anonymous">Anonymous</string>
+    <string name="image_not_found">Image not found</string>
 
 </resources>
