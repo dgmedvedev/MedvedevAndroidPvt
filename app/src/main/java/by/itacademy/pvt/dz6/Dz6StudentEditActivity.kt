@@ -5,10 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import by.itacademy.pvt.R
+import kotlinx.android.synthetic.main.activity_edit_student_dz6.save
 
 class Dz6StudentEditActivity : Activity() {
 
@@ -30,38 +30,49 @@ class Dz6StudentEditActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_student_dz6)
 
-        findViewById<Button>(R.id.save)
-            .setOnClickListener {
-                val name = findViewById<EditText>(R.id.nameEditText).text.toString()
-                //        var url = findViewById<EditText>(R.id.urlEditText).text.toString()
-                val url = "https://clck.ru/GskPq" // для тестирования приложения,
-                // что бы не вводить каждый раз
+        idStudent = intent.getLongExtra(ID_STUDENT, -1)
+        val user: Student? = Singleton.getListStudent().find { it.id == idStudent }
 
-                try {
-                    if (!pattern.matcher(url).matches()) throw HttpFormatException()
+        save.setOnClickListener {
+            val name = findViewById<EditText>(R.id.nameEditText).text.toString()
+            val id = System.currentTimeMillis()
+            //  var url = findViewById<EditText>(R.id.urlEditText).text.toString()
+            val url = "https://clck.ru/GskPq" // для тестирования приложения,
+            // что бы не вводить каждый раз
 
-                    Singleton.getListStudent().add(
-                        Student(
-                            System.currentTimeMillis(),
-                            url,
-                            if (name == "") {
-                                resources.getString(R.string.anonymous)
-                            } else name,
-                            findViewById<EditText>(R.id.ageEditText).text.toString().toInt()
-                        )
-                    )
-                    startDz6StudentListActivity()
-                } catch (nfe: NumberFormatException) {
-                    Toast.makeText(this, "Введите возраст", Toast.LENGTH_SHORT).show()
-                } catch (hfe: HttpFormatException) {
-                    Toast.makeText(this, "Неверно введен URL", Toast.LENGTH_SHORT).show()
-                }
-            }
+            if (idStudent != -1L) {
+                Singleton.getListStudent().remove(user)
+                user?.let { addStudent(user.id, url, name) }
+            } else addStudent(id, url, name)
+        }
     }
 
     private fun startDz6StudentListActivity() {
         val intent = Intent(this, Dz6StudentListActivity::class.java)
         startActivity(intent)
+        this.finish()
+    }
+
+    private fun addStudent(id: Long, imageUrl: String, name: String) {
+        try {
+            if (!pattern.matcher(imageUrl).matches()) throw HttpFormatException()
+
+            Singleton.getListStudent().add(
+                Student(
+                    id,
+                    imageUrl,
+                    if (name == "") {
+                        resources.getString(R.string.anonymous)
+                    } else name,
+                    findViewById<EditText>(R.id.ageEditText).text.toString().toInt()
+                )
+            )
+            startDz6StudentListActivity()
+        } catch (nfe: NumberFormatException) {
+            Toast.makeText(this, "Введите возраст", Toast.LENGTH_SHORT).show()
+        } catch (hfe: HttpFormatException) {
+            Toast.makeText(this, "Неверно введен URL", Toast.LENGTH_SHORT).show()
+        }
     }
 
     internal inner class HttpFormatException : Exception()

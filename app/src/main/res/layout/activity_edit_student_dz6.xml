@@ -14,7 +14,7 @@
             android:layout_marginTop="50dp"
             android:drawableStart="@drawable/ic_mode_edit_white_24dp"
             android:inputType="textUri"
-            android:hint="Введите URL"
+            android:hint="@string/enter_url"
             style="@style/LoginEditText"
             android:background="@drawable/edit_text_shape"/>
 
@@ -25,7 +25,7 @@
             android:layout_marginTop="50dp"
             android:drawableStart="@drawable/ic_mode_edit_white_24dp"
             android:inputType="text"
-            android:hint="Введите имя"
+            android:hint="@string/enter_name"
             style="@style/LoginEditText"
             android:background="@drawable/edit_text_shape"/>
 
@@ -36,7 +36,7 @@
             android:layout_marginTop="50dp"
             android:drawableStart="@drawable/ic_mode_edit_white_24dp"
             android:inputType="numberDecimal"
-            android:hint="Введите возраст"
+            android:hint="@string/enter_age"
             style="@style/LoginEditText"
             android:background="@drawable/edit_text_shape"/>
 

@@ -19,7 +19,8 @@
         <activity android:name="by.itacademy.pvt.dz2.Dz2Activity1"/>
         <activity android:name="by.itacademy.pvt.dz2.Dz2Activity2"/>
         <activity android:name="by.itacademy.pvt.dz3.Dz3Activity"/>
-        <activity android:name="by.itacademy.pvt.dz6.Dz6StudentListActivity"/>
+        <activity android:name="by.itacademy.pvt.dz6.Dz6StudentListActivity"
+                  android:launchMode="singleTask"/>
         <activity android:name="by.itacademy.pvt.dz6.Dz6StudentDetailsActivity"/>
         <activity android:name="by.itacademy.pvt.dz6.Dz6StudentEditActivity"/>
 

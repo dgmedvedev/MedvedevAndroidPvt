@@ -26,7 +26,7 @@ class Dz6StudentDetailsActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_student_dz6)
 
-        idStudent = intent.getLongExtra(ID_STUDENT, 0)
+        idStudent = intent.getLongExtra(ID_STUDENT, -1)
         val user: Student? = Singleton.getListStudent().find { it.id == idStudent }
 
         user?.let {
@@ -38,6 +38,7 @@ class Dz6StudentDetailsActivity : Activity() {
         delete.setOnClickListener {
 
             Singleton.getListStudent().remove(user)
+            startActivity(Dz6StudentListActivity.getIntent(this@Dz6StudentDetailsActivity, idStudent))
             this.finish()
         }
 

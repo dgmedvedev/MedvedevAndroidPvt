@@ -45,9 +45,13 @@
     <string name="phone_text">(781)547–3320</string>
 
     <string name="name_student">Name Student</string>
+    <string name="id_student" translatable="false">ID Student</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="save">Save</string>
+    <string name="enter_age">Enter age</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_url">Enter URL</string>
     <string name="anonymous">Anonymous</string>
     <string name="image_not_found">Image not found</string>
 
