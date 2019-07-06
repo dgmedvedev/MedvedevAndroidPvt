@@ -4,11 +4,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
+import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.itacademy.pvt.R
+import kotlinx.android.synthetic.main.activity_list_student_dz6.*
 
 class Dz6StudentListActivity : Activity(), Dz6ListAdapter.ClickListener {
     private lateinit var recyclerView: RecyclerView
@@ -35,16 +38,25 @@ class Dz6StudentListActivity : Activity(), Dz6ListAdapter.ClickListener {
         recyclerView.isNestedScrollingEnabled = false
         adapter = Dz6ListAdapter(Singleton.getListStudent(), this)
 
-        findViewById<ImageButton>(R.id.add_button)
-            .setOnClickListener {
-                startDz6StudentEditActivity()
+        search.addTextChangedListener(object : TextWatcher {
+
+            var timer: Handler? = null
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-    }
 
-    override fun onItemClick(item: Student) {
-        Toast.makeText(this, item.name, Toast.LENGTH_SHORT).show()
+            override fun afterTextChanged(p0: Editable?) {
+                timer = Handler()
+                timer?.postDelayed({
+                    adapter?.updateList(Singleton.filter(p0.toString()))
+                }, 500)
+            }
+        })
 
-        startActivity(Dz6StudentDetailsActivity.getIntent(this@Dz6StudentListActivity, item.id))
+        add_button.setOnClickListener {
+            startDz6StudentEditActivity()
+        }
     }
 
     override fun onStart() {
@@ -55,5 +67,10 @@ class Dz6StudentListActivity : Activity(), Dz6ListAdapter.ClickListener {
     private fun startDz6StudentEditActivity() {
         val intent = Intent(this, Dz6StudentEditActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onItemClick(item: Student) {
+        Toast.makeText(this, item.name, Toast.LENGTH_SHORT).show()
+        startActivity(Dz6StudentDetailsActivity.getIntent(this@Dz6StudentListActivity, item.id))
     }
 }

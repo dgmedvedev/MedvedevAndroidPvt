@@ -28,6 +28,12 @@ class Dz6ListAdapter(private val items: ArrayList<Student>, private val listener
         holder.bind(items[position])
     }
 
+    fun updateList(filterList: List<Student>) {
+        items.clear()
+        items.addAll(filterList)
+        notifyDataSetChanged()
+    }
+
     interface ClickListener {
         fun onItemClick(item: Student)
     }

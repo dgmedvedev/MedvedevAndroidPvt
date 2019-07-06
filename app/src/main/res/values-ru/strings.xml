@@ -48,9 +48,11 @@
     <string name="delete">Удалить</string>
     <string name="edit">Изменить</string>
     <string name="save">Сохранить</string>
+    <string name="search">Найти</string>
     <string name="enter_age">Введите возраст</string>
     <string name="enter_name">Введите имя</string>
     <string name="enter_url">Введите URL</string>
+    <string name="not_valid_url">Недопустимый URL-адрес</string>
     <string name="anonymous">Безымянный</string>
     <string name="image_not_found">Изображение не найдено</string>
 

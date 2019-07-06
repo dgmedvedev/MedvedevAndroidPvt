@@ -49,9 +49,11 @@
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="save">Save</string>
+    <string name="search">Search</string>
     <string name="enter_age">Enter age</string>
     <string name="enter_name">Enter name</string>
     <string name="enter_url">Enter URL</string>
+    <string name="not_valid_url">Not valid URL</string>
     <string name="anonymous">Anonymous</string>
     <string name="image_not_found">Image not found</string>
 

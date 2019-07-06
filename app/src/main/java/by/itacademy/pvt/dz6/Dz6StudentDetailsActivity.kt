@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_details_student_dz6.*
 
 class Dz6StudentDetailsActivity : Activity() {
 
-    private var idStudent = 0L
+    private var idStudent = -1L
 
     companion object {
         private const val ID_STUDENT = "ID_STUDENT"
@@ -27,7 +27,7 @@ class Dz6StudentDetailsActivity : Activity() {
         setContentView(R.layout.activity_details_student_dz6)
 
         idStudent = intent.getLongExtra(ID_STUDENT, -1)
-        val user: Student? = Singleton.getListStudent().find { it.id == idStudent }
+        val user: Student? = Singleton.getStudentById(idStudent)
 
         user?.let {
             name_details_student.text = user.name

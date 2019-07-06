@@ -11,12 +11,8 @@ class Dz6ListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val imageView = itemView.findViewById<ImageView>(R.id.photo_student)
     private val textView = view.findViewById<TextView>(R.id.name_student)
 
-    private val textViewID = view.findViewById<TextView>(R.id.id_student)
-
     fun bind(item: Student) {
         loadRoundImage(item.imageUrl, imageView)
         textView.text = item.name
-
-        textViewID.text = item.id.toString()
     }
 }

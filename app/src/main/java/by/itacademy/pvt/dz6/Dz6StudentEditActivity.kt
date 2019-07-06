@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_edit_student_dz6.save
 
 class Dz6StudentEditActivity : Activity() {
 
-    private var idStudent = 0L
+    private var idStudent = -1L
 
     private val pattern = Patterns.WEB_URL
 
@@ -31,13 +31,13 @@ class Dz6StudentEditActivity : Activity() {
         setContentView(R.layout.activity_edit_student_dz6)
 
         idStudent = intent.getLongExtra(ID_STUDENT, -1)
-        val user: Student? = Singleton.getListStudent().find { it.id == idStudent }
+        val user: Student? = Singleton.getStudentById(idStudent)
 
         save.setOnClickListener {
             val name = findViewById<EditText>(R.id.nameEditText).text.toString()
             val id = System.currentTimeMillis()
             //  var url = findViewById<EditText>(R.id.urlEditText).text.toString()
-            val url = "https://clck.ru/GskPq" // для тестирования приложения,
+            val url = "https://clck.ru/Gx4Nd" // для тестирования приложения,
             // что бы не вводить каждый раз
 
             if (idStudent != -1L) {
@@ -69,9 +69,17 @@ class Dz6StudentEditActivity : Activity() {
             )
             startDz6StudentListActivity()
         } catch (nfe: NumberFormatException) {
-            Toast.makeText(this, "Введите возраст", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                resources.getText(R.string.enter_age),
+                Toast.LENGTH_SHORT
+            ).show()
         } catch (hfe: HttpFormatException) {
-            Toast.makeText(this, "Неверно введен URL", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                resources.getText(R.string.not_valid_url),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

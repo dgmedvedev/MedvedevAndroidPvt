@@ -1,48 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardBackgroundColor="@android:color/white"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="5dp">
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="5dp">
 
     <LinearLayout
-        android:id="@+id/item_student"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:padding="16dp">
+            android:id="@+id/item_student"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
         <ImageView
-            android:id="@+id/photo_student"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_launcher_background" />
+                android:id="@+id/photo_student"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/ic_image_not_found_24dp"/>
 
         <TextView
-            android:id="@+id/name_student"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="@string/name_student"
-            android:textSize="20sp" />
-
-        <TextView
-                android:id="@+id/id_student"
+                android:id="@+id/name_student"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="15dp"
                 android:ellipsize="end"
-                android:maxLines="3"
-                android:text="@string/id_student"
-                android:textSize="20sp" />
+                android:maxLines="2"
+                android:text="@string/name_student"
+                android:textSize="@dimen/text_view"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
