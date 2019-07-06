@@ -21,6 +21,8 @@
     <string name="download_picture">Download picture</string>
     <string name="forgot"><u>Forgot your username/password?</u>></string>
     <string name="create_account">CREATE ACCOUNT</string>
+
+    <string name="name_clock" translatable="false">TISSOT</string>
     <string name="dylan_conner">Dylan Conner</string>
     <string name="trophies">TROPHIES</string>
     <string name="following">FOLLOWING</string>
@@ -42,7 +44,5 @@
     <string name="gender_text">Male</string>
     <string name="height_text">"6'1''"</string>
     <string name="phone_text">(781)547–3320</string>
-
-
 
 </resources>
