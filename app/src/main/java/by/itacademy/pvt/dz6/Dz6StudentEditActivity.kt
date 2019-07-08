@@ -7,10 +7,15 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.EditText
 import android.widget.Toast
+import by.itacademy.pvt.BuildConfig
 import by.itacademy.pvt.R
 import kotlinx.android.synthetic.main.activity_edit_student_dz6.save
 
 class Dz6StudentEditActivity : Activity() {
+
+    private lateinit var ageEditText: EditText
+    private lateinit var nameEditText: EditText
+    private lateinit var urlEditText: EditText
 
     private var idStudent = -1L
 
@@ -33,17 +38,32 @@ class Dz6StudentEditActivity : Activity() {
         idStudent = intent.getLongExtra(ID_STUDENT, -1)
         val user: Student? = Singleton.getStudentById(idStudent)
 
-        save.setOnClickListener {
-            val name = findViewById<EditText>(R.id.nameEditText).text.toString()
-            val id = System.currentTimeMillis()
-            //  var url = findViewById<EditText>(R.id.urlEditText).text.toString()
-            val url = "https://clck.ru/Gx4Nd" // для тестирования приложения,
-            // что бы не вводить каждый раз
+        nameEditText = findViewById(R.id.nameEditText)
+        urlEditText = findViewById(R.id.urlEditText)
+        ageEditText = findViewById(R.id.ageEditText)
 
-            if (idStudent != -1L) {
-                Singleton.getListStudent().remove(user)
-                user?.let { addStudent(user.id, url, name) }
-            } else addStudent(id, url, name)
+        save.setOnClickListener {
+            val id = System.currentTimeMillis()
+            val name = nameEditText.text.toString()
+            var url = urlEditText.text.toString()
+            if (BuildConfig.DEBUG) {
+                url = "https://clck.ru/Gx4Nd"
+            }
+
+            try {
+                val age = ageEditText.text.toString().toInt()
+
+                if (idStudent != -1L) {
+                    Singleton.getListStudent().remove(user)
+                    user?.let { addStudent(user.id, url, name, age) }
+                } else addStudent(id, url, name, age)
+            } catch (nfe: NumberFormatException) {
+                Toast.makeText(
+                    this,
+                    resources.getText(R.string.enter_age),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
@@ -53,7 +73,7 @@ class Dz6StudentEditActivity : Activity() {
         this.finish()
     }
 
-    private fun addStudent(id: Long, imageUrl: String, name: String) {
+    private fun addStudent(id: Long, imageUrl: String, name: String, age: Int) {
         try {
             if (!pattern.matcher(imageUrl).matches()) throw HttpFormatException()
 
@@ -64,16 +84,10 @@ class Dz6StudentEditActivity : Activity() {
                     if (name == "") {
                         resources.getString(R.string.anonymous)
                     } else name,
-                    findViewById<EditText>(R.id.ageEditText).text.toString().toInt()
+                    age
                 )
             )
             startDz6StudentListActivity()
-        } catch (nfe: NumberFormatException) {
-            Toast.makeText(
-                this,
-                resources.getText(R.string.enter_age),
-                Toast.LENGTH_SHORT
-            ).show()
         } catch (hfe: HttpFormatException) {
             Toast.makeText(
                 this,
