@@ -55,5 +55,6 @@
     <string name="not_valid_url">Недопустимый URL-адрес</string>
     <string name="anonymous">Безымянный</string>
     <string name="image_not_found">Изображение не найдено</string>
+    <string name="id_not_found">ID не найдено</string>
 
 </resources>

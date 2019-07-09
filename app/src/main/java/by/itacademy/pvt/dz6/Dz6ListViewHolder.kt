@@ -9,7 +9,7 @@ import by.itacademy.pvt.utils.loadRoundImage
 
 class Dz6ListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val imageView = itemView.findViewById<ImageView>(R.id.photo_student)
-    private val textView = view.findViewById<TextView>(R.id.name_student)
+    private val textView = itemView.findViewById<TextView>(R.id.name_student)
 
     fun bind(item: Student) {
         loadRoundImage(item.imageUrl, imageView)

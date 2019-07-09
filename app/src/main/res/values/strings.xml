@@ -56,5 +56,6 @@
     <string name="not_valid_url">Not valid URL</string>
     <string name="anonymous">Anonymous</string>
     <string name="image_not_found">Image not found</string>
+    <string name="id_not_found">ID not found</string>
 
 </resources>

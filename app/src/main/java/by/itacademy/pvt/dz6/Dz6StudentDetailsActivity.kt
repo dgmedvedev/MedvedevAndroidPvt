@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import by.itacademy.pvt.R
 import by.itacademy.pvt.utils.loadRoundImage
 import kotlinx.android.synthetic.main.activity_details_student_dz6.*
@@ -28,6 +29,14 @@ class Dz6StudentDetailsActivity : Activity() {
 
         idStudent = intent.getLongExtra(ID_STUDENT, -1)
         val user: Student? = Singleton.getStudentById(idStudent)
+        if (user == null) {
+            Toast.makeText(
+                this,
+                resources.getText(R.string.id_not_found),
+                Toast.LENGTH_SHORT
+            ).show()
+            this.finish()
+        }
 
         user?.let {
             name_details_student.text = user.name

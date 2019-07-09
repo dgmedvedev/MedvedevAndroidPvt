@@ -20,13 +20,3 @@ object Singleton {
         return listStudent.find { it.id == id }
     }
 }
-/*
-    private var listStudent: ArrayList<Student>? = null
-
-    fun getListStudent(): ArrayList<Student> {
-        if (listStudent == null) {
-            listStudent = arrayListOf()
-        }
-        return listStudent as ArrayList<Student>
-    }
-*/
