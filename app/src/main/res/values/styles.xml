@@ -87,4 +87,34 @@
         <item name="colorAccent">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="NameStudentTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:fontFamily">@font/monda_regular</item>
+        <item name="android:textColor">@color/login</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+    </style>
+
+    <style name="NameStudentTextView_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/monda_bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:background">@drawable/edit_text_shape</item>
+    </style>
+
+    <style name="delete_button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:background">@color/add_button</item>
+        <item name="android:textSize">@dimen/save_button_text</item>
+    </style>
+
 </resources>

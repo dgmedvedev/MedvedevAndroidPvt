@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="add_button_size">70dp</dimen>
+    <dimen name="save_button_text">20sp</dimen>
+    <dimen name="delete_button_text">15sp</dimen>
+    <dimen name="edit_text">20sp</dimen>
+    <dimen name="text_view">20sp</dimen>
+
     <dimen name="textSector">25dp</dimen>
     <dimen name="padding5dp">5dp</dimen>
     <dimen name="padding10dp">10dp</dimen>

@@ -31,4 +31,7 @@
     <color name="DenmarkRed">#D20F33</color>
     <color name="white">#FFFFFF</color>
 
+    <color name="add_button">#13EB36</color>
+    <color name="add_press_button">#F7DF10</color>
+
 </resources>

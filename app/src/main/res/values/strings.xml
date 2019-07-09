@@ -38,6 +38,7 @@
     <string name="following_count">54</string>
     <string name="followers_count">12</string>
     <string name="name">NAME</string>
+    <string name="age">AGE</string>
     <string name="country">COUNTRY</string>
     <string name="postal_code">POSTAL CODE</string>
     <string name="date_of_birth">DATE OF BIRTH</string>
@@ -51,5 +52,19 @@
     <string name="gender_text">Male</string>
     <string name="height_text">"6'1''"</string>
     <string name="phone_text">(781)547–3320</string>
+
+    <string name="name_student">Name Student</string>
+    <string name="id_student" translatable="false">ID Student</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="search">Search</string>
+    <string name="enter_age">Enter age</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_url">Enter URL</string>
+    <string name="not_valid_url">Not valid URL</string>
+    <string name="anonymous">Anonymous</string>
+    <string name="image_not_found">Image not found</string>
+    <string name="id_not_found">ID not found</string>
 
 </resources>

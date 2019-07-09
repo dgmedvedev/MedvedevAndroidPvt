@@ -37,6 +37,7 @@
     <string name="following_count">54</string>
     <string name="followers_count">12</string>
     <string name="name">ИМЯ</string>
+    <string name="age">ВОЗРАСТ</string>
     <string name="country">СТРАНА</string>
     <string name="postal_code">ПОЧТОВЫЙ ИНДЕКС</string>
     <string name="date_of_birth">ДАТА РОЖДЕНИЯ</string>
@@ -50,5 +51,18 @@
     <string name="gender_text">Мужчина</string>
     <string name="height_text">"6'1''"</string>
     <string name="phone_text">(781)547–3320</string>
+
+    <string name="name_student">Имя студента</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Изменить</string>
+    <string name="save">Сохранить</string>
+    <string name="search">Найти</string>
+    <string name="enter_age">Введите возраст</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_url">Введите URL</string>
+    <string name="not_valid_url">Недопустимый URL-адрес</string>
+    <string name="anonymous">Безымянный</string>
+    <string name="image_not_found">Изображение не найдено</string>
+    <string name="id_not_found">ID не найдено</string>
 
 </resources>

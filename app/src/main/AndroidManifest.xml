@@ -3,13 +3,15 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <application android:allowBackup="true"
-                 android:label="@string/app_name"
-                 android:icon="@mipmap/ic_launcher"
-                 android:roundIcon="@mipmap/ic_launcher_round"
-                 android:supportsRtl="true"
-                 android:theme="@style/AppTheme"
-                 tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+    <application
+            android:name="by.itacademy.pvt.app.App"
+            android:allowBackup="true"
+            android:label="@string/app_name"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity android:name="by.itacademy.pvt.dz0.Dz0Activity"/>
         <activity android:name="by.itacademy.pvt.dz1.Dz1Activity"/>
@@ -21,6 +23,10 @@
         <activity android:name="by.itacademy.pvt.dz5.part1.Dz5Activity1"/>
         <activity android:name="by.itacademy.pvt.dz5.part2.Dz5Activity2"/>
         <activity android:name="by.itacademy.pvt.dz5.Dz5MenuActivity"/>
+        <activity android:name="by.itacademy.pvt.dz6.Dz6StudentListActivity"
+                  android:launchMode="singleTask"/>
+        <activity android:name="by.itacademy.pvt.dz6.Dz6StudentDetailsActivity"/>
+        <activity android:name="by.itacademy.pvt.dz6.Dz6StudentEditActivity"/>
 
         <activity android:name="by.itacademy.pvt.MenuActivity">
             <intent-filter>
