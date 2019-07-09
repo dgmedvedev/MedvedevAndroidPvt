@@ -1,13 +1,19 @@
 <resources>
     <string name="app_name">ПВТ.МоиДЗ</string>
-    <string name="dz0">ДЗ0</string>
-    <string name="dz1">ДЗ1</string>
-    <string name="dz2">ДЗ2</string>
-    <string name="dz3">ДЗ3</string>
-    <string name="dz4">ДЗ4</string>
-    <string name="dz5">ДЗ5</string>
-    <string name="dz6">ДЗ6</string>
-    <string name="dz7">ДЗ7</string>
+    <string name="dz0">ДЗ 0</string>
+    <string name="dz1">ДЗ 1</string>
+    <string name="dz2">ДЗ 2</string>
+    <string name="dz3">ДЗ 3</string>
+    <string name="dz4">ДЗ 4</string>
+    <string name="dz5">ДЗ 5</string>
+    <string name="dz6">ДЗ 6</string>
+    <string name="dz7">ДЗ 7</string>
+    <string name="dz8">ДЗ 8</string>
+    <string name="dz9">ДЗ 9</string>
+    <string name="dz10">ДЗ 10</string>
+    <string name="dz11">ДЗ 11</string>
+    <string name="dz12">ДЗ 12</string>
+
     <string name="text_view1">Текст №1</string>
     <string name="text_view2">Текст №2</string>
     <string name="part1">Часть 1</string>
@@ -19,7 +25,9 @@
     <string name="password">Пароль</string>
     <string name="login">Войти</string>
     <string name="download_picture">Загрузить картинку</string>
-    <string name="forgot"><u>Забыли имя пользователя/пароль?</u></string>
+    <string name="forgot">
+        <u>Забыли имя пользователя/пароль?</u>
+    </string>
     <string name="create_account">Создать учетную запись</string>
     <string name="dylan_conner">Dylan Conner</string>
     <string name="trophies">TROPHIES</string>

@@ -1,13 +1,19 @@
 <resources>
     <string name="app_name">PVT.MyDZ</string>
-    <string name="dz0">DZ0</string>
-    <string name="dz1">DZ1</string>
-    <string name="dz2">DZ2</string>
-    <string name="dz3">DZ3</string>
-    <string name="dz4">DZ4</string>
-    <string name="dz5">DZ5</string>
-    <string name="dz6">DZ6</string>
-    <string name="dz7">DZ7</string>
+    <string name="dz0">DZ 0</string>
+    <string name="dz1">DZ 1</string>
+    <string name="dz2">DZ 2</string>
+    <string name="dz3">DZ 3</string>
+    <string name="dz4">DZ 4</string>
+    <string name="dz5">DZ 5</string>
+    <string name="dz6">DZ 6</string>
+    <string name="dz7">DZ 7</string>
+    <string name="dz8">DZ 8</string>
+    <string name="dz9">DZ 9</string>
+    <string name="dz10">DZ 10</string>
+    <string name="dz11">DZ 11</string>
+    <string name="dz12">DZ 12</string>
+
     <string name="text_view1">TextView №1</string>
     <string name="text_view2">TextView №2</string>
     <string name="part1">Part 1</string>
@@ -19,8 +25,11 @@
     <string name="password">Password</string>
     <string name="login">log in</string>
     <string name="download_picture">Download picture</string>
-    <string name="forgot"><u>Forgot your username/password?</u>></string>
+    <string name="forgot">
+        <u>Forgot your username/password?</u>
+    </string>
     <string name="create_account">CREATE ACCOUNT</string>
+    <string name="name_clock" translatable="false">TISSOT</string>
     <string name="dylan_conner">Dylan Conner</string>
     <string name="trophies">TROPHIES</string>
     <string name="following">FOLLOWING</string>

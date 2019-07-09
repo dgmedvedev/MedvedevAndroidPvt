@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <dimen name="add_button_size">70dp</dimen>
     <dimen name="save_button_text">20sp</dimen>
     <dimen name="delete_button_text">15sp</dimen>
     <dimen name="edit_text">20sp</dimen>
     <dimen name="text_view">20sp</dimen>
+
+    <dimen name="textSector">25dp</dimen>
+    <dimen name="padding5dp">5dp</dimen>
+    <dimen name="padding10dp">10dp</dimen>
+    <dimen name="padding20dp">20dp</dimen>
+    <dimen name="padding25dp">25dp</dimen>
+
+    <dimen name="number_size">50dp</dimen>
+    <dimen name="text_size">25dp</dimen>
+    <dimen name="radius_small_circle">8dp</dimen>
+    <dimen name="width_arrow_hour">10dp</dimen>
+    <dimen name="edge_arrow_hour">50dp</dimen>
+    <dimen name="length_arrow_hour">35dp</dimen>
+    <dimen name="width_arrow_minute">7dp</dimen>
+    <dimen name="edge_arrow_minute">30dp</dimen>
+    <dimen name="length_arrow_minute">20dp</dimen>
+    <dimen name="length_arrow_second">15dp</dimen>
+    <dimen name="length_pointer_hour">10dp</dimen>
 
 </resources>
