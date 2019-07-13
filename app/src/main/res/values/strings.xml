@@ -67,4 +67,6 @@
     <string name="image_not_found">Image not found</string>
     <string name="id_not_found">ID not found</string>
 
+    <string name="screen_diagonal_in_inches" translatable="false">6.5</string>
+
 </resources>

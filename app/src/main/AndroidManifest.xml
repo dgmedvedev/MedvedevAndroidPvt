@@ -27,9 +27,9 @@
                   android:launchMode="singleTask"/>
         <activity android:name="by.itacademy.pvt.dz6.Dz6StudentDetailsActivity"/>
         <activity android:name="by.itacademy.pvt.dz6.Dz6StudentEditActivity"/>
-        <activity android:name="by.itacademy.pvt.dz8.Dz8StudentListActivity"
+
+        <activity android:name="by.itacademy.pvt.dz8.Dz8FragmentActivity"
                   android:launchMode="singleTask"/>
-        <activity android:name="by.itacademy.pvt.dz8.Dz8StudentDetailsActivity"/>
 
         <activity android:name="by.itacademy.pvt.MenuActivity">
             <intent-filter>

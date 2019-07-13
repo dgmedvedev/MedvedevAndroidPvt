@@ -2,8 +2,8 @@ package by.itacademy.pvt.dz8
 
 import android.content.Context
 import android.content.SharedPreferences
-import by.itacademy.pvt.dz8.Dz8StudentListActivity.Companion.SHARED_PREFS_NAME
-import by.itacademy.pvt.dz8.Dz8StudentListActivity.Companion.TEXT_KEY
+import by.itacademy.pvt.dz8.Dz8StudentListFragment.Companion.SHARED_PREFS_NAME
+import by.itacademy.pvt.dz8.Dz8StudentListFragment.Companion.TEXT_KEY
 
 class AppPrefManager(context: Context) {
     private val sharedPrefs: SharedPreferences = context

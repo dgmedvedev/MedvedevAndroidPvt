@@ -11,7 +11,7 @@ import by.itacademy.pvt.dz3.Dz3Activity
 import by.itacademy.pvt.dz4.Dz4Activity
 import by.itacademy.pvt.dz5.Dz5MenuActivity
 import by.itacademy.pvt.dz6.Dz6StudentListActivity
-import by.itacademy.pvt.dz8.Dz8StudentListActivity
+import by.itacademy.pvt.dz8.Dz8FragmentActivity
 import kotlinx.android.synthetic.main.activity_menu.*
 
 class MenuActivity : Activity() {
@@ -41,7 +41,7 @@ class MenuActivity : Activity() {
             start(Dz6StudentListActivity())
         }
         dz8.setOnClickListener {
-            start(Dz8StudentListActivity())
+            start(Dz8FragmentActivity())
         }
     }
 
