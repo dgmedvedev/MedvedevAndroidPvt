@@ -36,8 +36,8 @@
     <string name="trophies_count">4</string>
     <string name="following_count">54</string>
     <string name="followers_count">12</string>
-    <string name="name">ИМЯ</string>
-    <string name="age">ВОЗРАСТ</string>
+    <string name="name">Имя</string>
+    <string name="age">Возраст</string>
     <string name="country">СТРАНА</string>
     <string name="postal_code">ПОЧТОВЫЙ ИНДЕКС</string>
     <string name="date_of_birth">ДАТА РОЖДЕНИЯ</string>

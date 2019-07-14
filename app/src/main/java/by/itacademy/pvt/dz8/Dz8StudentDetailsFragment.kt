@@ -79,6 +79,8 @@ class Dz8StudentDetailsFragment : Fragment() {
                 delete.setOnClickListener {
                     Singleton.getListStudent().remove(user)
                     activity?.supportFragmentManager?.popBackStack()
+                    if (!Dz8FragmentActivity.isPhone)
+                        listener?.startDz8StudentListFragment()
                 }
 
                 edit.setOnClickListener {
@@ -96,5 +98,6 @@ class Dz8StudentDetailsFragment : Fragment() {
 
     interface Listener {
         fun onEditStudentClick(id: Long)
+        fun startDz8StudentListFragment()
     }
 }

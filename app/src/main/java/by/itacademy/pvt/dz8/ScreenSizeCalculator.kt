@@ -11,8 +11,7 @@ class ScreenSizeCalculator {
 
         val yInches = metrics.heightPixels / metrics.ydpi
         val xInches = metrics.widthPixels / metrics.xdpi
-        val diagonalInches = Math.sqrt((xInches * xInches + yInches * yInches).toDouble())
-    //    if (diagonalInches >= 6.5) {} else {}
-        return diagonalInches
+
+        return Math.sqrt((xInches * xInches + yInches * yInches).toDouble())
     }
 }
