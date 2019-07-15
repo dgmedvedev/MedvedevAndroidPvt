@@ -1,6 +1,7 @@
 package by.itacademy.pvt.dz8
 
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -14,21 +15,13 @@ class Dz8FragmentActivity : FragmentActivity(),
     private val containerOne = R.id.containerOne
     private val containerTwo = R.id.containerTwo
 
-    private val screenSizeCalculator = ScreenSizeCalculator()
-    private var screenDiagonal: Double = 0.0
-
-    companion object {
-        var isPhone = true
-    }
+    private var isPhone = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fragment_dz8)
 
-        val screenSize = screenSizeCalculator.findSize(this)
-        screenDiagonal = resources.getString(R.string.screen_diagonal_in_inches).toDouble()
-
-        if (screenSize >= screenDiagonal) isPhone = false
+        isPhone = (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
 
         if (savedInstanceState == null && isPhone) {
 
@@ -51,7 +44,7 @@ class Dz8FragmentActivity : FragmentActivity(),
         transaction.commit()
     }
 
-    private fun choiceContainer(fragment: Fragment) {
+    private fun chooseContainer(fragment: Fragment) {
         if (isPhone)
             containerAddFragment(containerOne, fragment)
         else
@@ -70,14 +63,14 @@ class Dz8FragmentActivity : FragmentActivity(),
     }
 
     override fun startDz8StudentEditFragment() {
-        choiceContainer(Dz8StudentEditFragment.getInstance())
+        chooseContainer(Dz8StudentEditFragment.getInstance())
     }
 
     override fun onEditStudentClick(id: Long) {
-        choiceContainer(Dz8StudentEditFragment.getInstance(id))
+        chooseContainer(Dz8StudentEditFragment.getInstance(id))
     }
 
     override fun onStudentClick(id: Long) {
-        choiceContainer(Dz8StudentDetailsFragment.getInstance(id))
+        chooseContainer(Dz8StudentDetailsFragment.getInstance(id))
     }
 }

@@ -1,6 +1,7 @@
 package by.itacademy.pvt.dz8
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -79,7 +80,7 @@ class Dz8StudentDetailsFragment : Fragment() {
                 delete.setOnClickListener {
                     Singleton.getListStudent().remove(user)
                     activity?.supportFragmentManager?.popBackStack()
-                    if (!Dz8FragmentActivity.isPhone)
+                    if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
                         listener?.startDz8StudentListFragment()
                 }
 

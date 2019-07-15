@@ -30,11 +30,6 @@ class Dz8StudentListFragment : Fragment(), Dz6ListAdapter.ClickListener {
     private lateinit var search: EditText
     private lateinit var add: ImageButton
 
-    companion object {
-        const val SHARED_PREFS_NAME = "SHARED_PREFS_NAME"
-        const val TEXT_KEY = "TEXT_KEY"
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is Listener)
