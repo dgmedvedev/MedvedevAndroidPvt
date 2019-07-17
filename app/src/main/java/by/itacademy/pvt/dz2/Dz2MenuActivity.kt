@@ -9,7 +9,7 @@ import by.itacademy.pvt.R
 class Dz2MenuActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_dz2)
+        setContentView(R.layout.activity_menu_two_button)
 
         findViewById<Button>(R.id.part1)
             .setOnClickListener {
