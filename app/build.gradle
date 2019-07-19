@@ -19,8 +19,28 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
         }
     }
+
+    signingConfigs {
+        release {
+            // TODO Add release keys
+        }
+        debug {
+            storeFile file("D:/medvedev/AndroidStudioProjects/Medvedev/dev_keystory.jks")
+            storePassword "29031987"
+            keyAlias "midos"
+            keyPassword "29031987"
+        }
+    }
+
     buildTypes {
         release {
+            // TODO to release
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
