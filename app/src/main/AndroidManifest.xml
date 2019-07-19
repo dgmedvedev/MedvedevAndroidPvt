@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools" package="by.itacademy.pvt">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -12,6 +13,9 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="@string/google_maps_key"/>
 
         <activity android:name="by.itacademy.pvt.dz0.Dz0Activity"/>
         <activity android:name="by.itacademy.pvt.dz1.Dz1Activity"/>
@@ -27,9 +31,9 @@
                   android:launchMode="singleTask"/>
         <activity android:name="by.itacademy.pvt.dz6.Dz6StudentDetailsActivity"/>
         <activity android:name="by.itacademy.pvt.dz6.Dz6StudentEditActivity"/>
-
         <activity android:name="by.itacademy.pvt.dz8.Dz8FragmentActivity"
                   android:launchMode="singleTask"/>
+        <activity android:name="by.itacademy.pvt.dz9.Dz9Activity"/>
 
         <activity android:name="by.itacademy.pvt.MenuActivity">
             <intent-filter>
