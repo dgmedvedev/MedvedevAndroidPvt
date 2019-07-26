@@ -170,7 +170,7 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
             val builder = LatLngBounds.builder()
             poiList.forEach { itPoi ->
                 itPoi.coordinate?.let {
-                    val location = LatLng(itPoi.coordinate.latitude, itPoi.coordinate.longitude)
+                    val location = LatLng(it.latitude, it.longitude)
 
                     itPoi.heading?.let { heading ->
                         itMap.addMarker(
