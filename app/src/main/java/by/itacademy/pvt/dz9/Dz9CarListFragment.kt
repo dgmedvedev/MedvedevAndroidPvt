@@ -29,7 +29,7 @@ class Dz9CarListFragment : Fragment(), Dz9Adapter.ClickListener, CarRepositoryRe
     }
 
     override fun onCarClick(item: Poi) {
-        listener?.onCarClick(item)
+        listener?.onItemClick(item)
     }
 
     override fun onSuccess(data: List<Poi>) {
@@ -45,7 +45,7 @@ class Dz9CarListFragment : Fragment(), Dz9Adapter.ClickListener, CarRepositoryRe
     }
 
     override fun onError(throwable: Throwable) {
-        Toast.makeText(context, "Error loading car list, \n please try again", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, throwable.message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onAttach(context: Context) {
@@ -60,6 +60,6 @@ class Dz9CarListFragment : Fragment(), Dz9Adapter.ClickListener, CarRepositoryRe
     }
 
     interface ClickListener {
-        fun onCarClick(item: Poi)
+        fun onItemClick(item: Poi)
     }
 }

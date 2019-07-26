@@ -1,6 +1,8 @@
 package by.itacademy.pvt.dz9
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
@@ -28,11 +30,27 @@ import java.io.IOException
 
 class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.ClickListener, CarRepositoryResult {
 
-    private lateinit var map: GoogleMap
-    private lateinit var mapView: MapView
-
-    private val carRepository: CarRepository = provideCarRepository()
     private val poiList: MutableList<Poi> = mutableListOf()
+    private val carRepository: CarRepository = provideCarRepository()
+
+    private val lazyTaxi: Bitmap by lazy {
+        BitmapFactory.decodeResource(resources, R.drawable.ic_taxi)
+    }
+    private val lazyPooling: Bitmap by lazy {
+        BitmapFactory.decodeResource(resources, R.drawable.ic_pooling)
+    }
+
+    private var rateZoomMap: Int = 0
+
+    private var map: GoogleMap? = null
+    private var mapView: MapView? = null
+
+    private var mapIsEmpty: String = ""
+    private var mapViewIsEmpty: String = ""
+    private var coordinateIsEmpty: String = ""
+
+    private var onSuccessCompleted = false
+    private var onMapReadyCompleted = false
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<FrameLayout>
 
@@ -43,6 +61,12 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dz9)
+
+        mapIsEmpty = resources.getString(R.string.map_is_empty)
+        mapViewIsEmpty = resources.getString(R.string.mapView_is_empty)
+        coordinateIsEmpty = resources.getString(R.string.coordinate_is_empty)
+
+        rateZoomMap = resources.getString(R.string.rate_zoom_map).toInt()
 
         if (savedInstanceState == null) {
             val dz9Fragment = Dz9CarListFragment()
@@ -55,8 +79,10 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
         bottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.dz9Container))
 
         mapView = findViewById(R.id.map)
-        mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync(this)
+        mapView?.let { itMapView ->
+            itMapView.onCreate(savedInstanceState)
+            itMapView.getMapAsync(this)
+        } ?: onError(Exception(mapViewIsEmpty))
 
         carRepository
             .getCarByCoordinate(
@@ -70,24 +96,23 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-        map.mapType = GoogleMap.MAP_TYPE_HYBRID
-        map.uiSettings.isZoomControlsEnabled = true
-    }
 
-    override fun onCarClick(item: Poi) {
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-        map.clear()
-        val car = LatLng(
-            item.coordinate?.latitude!!,
-            item.coordinate.longitude
-        )
+        map?.let { itMap ->
+            itMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+            itMap.uiSettings.isZoomControlsEnabled = true
+        } ?: onError(Exception(mapIsEmpty))
 
-        placeMarkerOnMap(car, item.fleetType.toString())
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(car, 12f))
+        onMapReadyCompleted = true
+
+        if (onSuccessCompleted)
+            drawMarkersOnMap()
     }
 
     override fun onSuccess(data: List<Poi>) {
         poiList.addAll(data)
+
+        onSuccessCompleted = true
+
         if (ActivityCompat.checkSelfPermission(
                 this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
@@ -99,31 +124,25 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
             )
             return
         }
-        map.isMyLocationEnabled = true
 
-        val builder = LatLngBounds.builder()
-        poiList.forEach {
-            val coord = LatLng(it.coordinate?.latitude!!, it.coordinate.longitude)
-            map.addMarker(
-                MarkerOptions().position(coord)
-                    .rotation(it.heading!!.toFloat())
-            )
-            builder.include(coord)
+        if (onMapReadyCompleted) {
+            drawMarkersOnMap()
         }
+    }
 
-        val bounds = builder.build()
-        map.moveCamera(
-            CameraUpdateFactory.newLatLngBounds(
-                bounds,
-                resources.displayMetrics.widthPixels,
-                resources.displayMetrics.heightPixels,
-                resources.displayMetrics.widthPixels / 5
-            )
-        )
+    override fun onItemClick(item: Poi) {
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        map?.clear() ?: onError(Exception(mapIsEmpty))
+
+        item.coordinate?.let {
+            val location = LatLng(it.latitude, it.longitude)
+            placeMarkerOnMap(location, item.fleetType.toString())
+            map?.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 12f)) ?: onError(Exception(mapIsEmpty))
+        } ?: onError(Exception(coordinateIsEmpty))
     }
 
     override fun onError(throwable: Throwable) {
-        Toast.makeText(this, "Error loading data", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, throwable.message, Toast.LENGTH_SHORT).show()
     }
 
     private fun placeMarkerOnMap(location: LatLng, fleetType: String) {
@@ -131,17 +150,49 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
 
         markerOptions.icon(
             BitmapDescriptorFactory.fromBitmap(
-                if (fleetType == "TAXI")
-                    BitmapFactory.decodeResource(resources, R.drawable.ic_taxi)
-                else
-                    BitmapFactory.decodeResource(resources, R.drawable.ic_pooling)
+                if (fleetType == "TAXI") lazyTaxi
+                else lazyPooling
             )
         )
 
         val titleString = getAddress(location)
 
         markerOptions.title(titleString)
-        map.addMarker(markerOptions)
+        map?.addMarker(markerOptions) ?: onError(Exception(mapIsEmpty))
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun drawMarkersOnMap() {
+        map?.let { itMap ->
+
+            itMap.isMyLocationEnabled = true
+
+            val builder = LatLngBounds.builder()
+            poiList.forEach { itPoi ->
+                itPoi.coordinate?.let {
+                    val location = LatLng(itPoi.coordinate.latitude, itPoi.coordinate.longitude)
+
+                    itPoi.heading?.let { heading ->
+                        itMap.addMarker(
+                            MarkerOptions().position(location)
+                                .rotation(heading.toFloat())
+                        )
+                    } ?: onError(Exception("Heading is empty"))
+
+                    builder.include(location)
+                } ?: onError(Exception(coordinateIsEmpty))
+            }
+
+            val bounds = builder.build()
+            itMap.moveCamera(
+                CameraUpdateFactory.newLatLngBounds(
+                    bounds,
+                    resources.displayMetrics.widthPixels,
+                    resources.displayMetrics.heightPixels,
+                    resources.displayMetrics.widthPixels / rateZoomMap
+                )
+            )
+        } ?: onError(Exception(mapIsEmpty))
     }
 
     private fun getAddress(latLng: LatLng): String {
@@ -164,36 +215,36 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
 
     override fun onStart() {
         super.onStart()
-        mapView.onStart()
+        mapView?.onStart() ?: onError(Exception(mapViewIsEmpty))
     }
 
     override fun onStop() {
         super.onStop()
-        mapView.onStop()
+        mapView?.onStop() ?: onError(Exception(mapViewIsEmpty))
     }
 
     override fun onResume() {
         super.onResume()
-        mapView.onResume()
+        mapView?.onResume() ?: onError(Exception(mapViewIsEmpty))
     }
 
     override fun onPause() {
         super.onPause()
-        mapView.onPause()
+        mapView?.onPause() ?: onError(Exception(mapViewIsEmpty))
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mapView.onDestroy()
+        mapView?.onDestroy() ?: onError(Exception(mapViewIsEmpty))
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
-        mapView.onSaveInstanceState(outState)
+        mapView?.onSaveInstanceState(outState) ?: onError(Exception(mapViewIsEmpty))
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView.onLowMemory()
+        mapView?.onLowMemory() ?: onError(Exception(mapViewIsEmpty))
     }
 }

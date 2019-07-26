@@ -17,7 +17,9 @@ class CarRepositoryRemote(private val api: Api) : CarRepository {
             params.coordinate2.longitude
         ).enqueue(object : Callback<CarResponse> {
             override fun onResponse(call: Call<CarResponse>, response: Response<CarResponse>) {
-                listener.onSuccess(response.body()!!.poiList)
+                response.body()?.let {
+                    listener.onSuccess(it.poiList)
+                } ?: listener.onError(Exception("Body is empty"))
             }
 
             override fun onFailure(call: Call<CarResponse>, throwable: Throwable) {
