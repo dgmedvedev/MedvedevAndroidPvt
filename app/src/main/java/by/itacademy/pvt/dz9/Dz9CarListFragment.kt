@@ -17,8 +17,8 @@ import by.itacademy.pvt.dz9.entity.Poi
 class Dz9CarListFragment : Fragment(), Dz9Adapter.ClickListener, CarRepositoryResult {
 
     private val carRepository: CarRepository = provideCarRepository()
-    private lateinit var adapter: Dz9Adapter
     private val poiList: MutableList<Poi> = mutableListOf()
+    private var adapter: Dz9Adapter = Dz9Adapter(poiList, this@Dz9CarListFragment)
     private var listener: ClickListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,13 +33,17 @@ class Dz9CarListFragment : Fragment(), Dz9Adapter.ClickListener, CarRepositoryRe
     }
 
     override fun onSuccess(data: List<Poi>) {
-        val recyclerView = view!!.findViewById<RecyclerView>(R.id.dz9RecyclerView)
-
         poiList.addAll(data)
 
+        fillAdapter()
+    }
+
+    private fun fillAdapter() {
+        val recyclerView = view!!.findViewById<RecyclerView>(R.id.dz9RecyclerView)
         recyclerView?.setHasFixedSize(false)
         recyclerView.isNestedScrollingEnabled = false
         recyclerView?.layoutManager = LinearLayoutManager(context)
+
         adapter = Dz9Adapter(poiList, this@Dz9CarListFragment)
         recyclerView.adapter = adapter
     }
