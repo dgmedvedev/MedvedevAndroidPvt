@@ -65,4 +65,7 @@
     <string name="image_not_found">Изображение не найдено</string>
     <string name="id_not_found">ID не найдено</string>
 
+    <string name="latitude">Широта:</string>
+    <string name="longitude">Долгота:</string>
+
 </resources>

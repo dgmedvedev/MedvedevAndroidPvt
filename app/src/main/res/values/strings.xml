@@ -67,6 +67,13 @@
     <string name="image_not_found">Image not found</string>
     <string name="id_not_found">ID not found</string>
 
-    <string name="screen_diagonal_in_inches" translatable="false">6.5</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+
+    <string name="map_is_empty" translatable="false">Map is empty</string>
+    <string name="mapView_is_empty" translatable="false">MapView is empty</string>
+    <string name="heading_is_empty" translatable="false">Heading is empty</string>
+    <string name="coordinate_is_empty" translatable="false">Coordinate is empty</string>
+    <string name="rate_zoom_map" translatable="false">5</string>
 
 </resources>
