@@ -6,6 +6,7 @@ import android.os.Bundle
 
 import by.itacademy.pvt.dz0.Dz0Activity
 import by.itacademy.pvt.dz1.Dz1Activity
+import by.itacademy.pvt.dz11.Dz11MenuActivity
 import by.itacademy.pvt.dz2.Dz2MenuActivity
 import by.itacademy.pvt.dz3.Dz3Activity
 import by.itacademy.pvt.dz4.Dz4Activity
@@ -46,6 +47,9 @@ class MenuActivity : Activity() {
         }
         dz9.setOnClickListener {
             start(Dz9Activity())
+        }
+        dz11.setOnClickListener {
+            start(Dz11MenuActivity())
         }
     }
 
