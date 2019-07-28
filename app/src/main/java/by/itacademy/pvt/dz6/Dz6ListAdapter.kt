@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import by.itacademy.pvt.R
 
-class Dz6ListAdapter(private val items: ArrayList<Student>, private val listener: ClickListener) :
-        RecyclerView.Adapter<Dz6ListViewHolder>() {
+class Dz6ListAdapter(private var items: List<Student>, private val listener: ClickListener) :
+    RecyclerView.Adapter<Dz6ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Dz6ListViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_dz6_students, parent, false)
+            .inflate(R.layout.item_dz6_students, parent, false)
 
         val holder = Dz6ListViewHolder(view)
 
@@ -29,8 +29,7 @@ class Dz6ListAdapter(private val items: ArrayList<Student>, private val listener
     }
 
     fun updateList(filterList: List<Student>) {
-        items.clear()
-        items.addAll(filterList)
+        items = filterList
         notifyDataSetChanged()
     }
 
