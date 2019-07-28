@@ -52,6 +52,7 @@ class Dz8StudentDetailsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_details_student_dz8, container, false)
 
         val idStudent = arguments?.getLong(ID_STUDENT, -1)
+
         if (idStudent != null) {
             val user: Student? = Singleton.getStudentById(idStudent)
 
@@ -61,10 +62,6 @@ class Dz8StudentDetailsFragment : Fragment() {
                     resources.getText(R.string.id_not_found),
                     Toast.LENGTH_SHORT
                 ).show()
-                println("idStudent: = $idStudent")
-                println("idStudent: = $idStudent")
-                println("idStudent: = $idStudent")
-                println("idStudent: = $idStudent")
                 activity?.supportFragmentManager?.popBackStack()
             } else {
                 name = view.name_details_student

@@ -8,6 +8,12 @@ class Dz11StudentDetailsPresenter(private val idStudent: Long?) {
     private var view: Dz11StudentDetailsView? = null
     private var user: Student? = null
 
+    private fun removeStudent(idStudent: Long) {
+        Singleton.getListStudent().find {
+            it.id == idStudent
+        }?.apply { Singleton.getListStudent().remove(this) }
+    }
+
     fun setView(view: Dz11StudentDetailsView) {
         this.view = view
     }
@@ -25,9 +31,7 @@ class Dz11StudentDetailsPresenter(private val idStudent: Long?) {
         idStudent?.let { removeStudent(it) }
     }
 
-    private fun removeStudent(idStudent: Long) {
-        Singleton.getListStudent().find {
-            it.id == idStudent
-        }?.apply { Singleton.getListStudent().remove(this) }
+    fun detach() {
+        this.view = null
     }
 }

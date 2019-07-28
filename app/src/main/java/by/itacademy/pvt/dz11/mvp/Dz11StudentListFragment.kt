@@ -106,6 +106,8 @@ class Dz11StudentListFragment : Fragment(), Dz6ListAdapter.ClickListener, Dz11St
     override fun onDetach() {
         super.onDetach()
         listener = null
+
+        presenter.detach()
     }
 
     interface Listener {

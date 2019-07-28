@@ -57,32 +57,41 @@ class Dz8StudentEditFragment : Fragment() {
         if (idStudent != null) {
             val user: Student? = Singleton.getStudentById(idStudent)
 
-            nameEditText = view.findViewById(R.id.nameEditText)
-            urlEditText = view.findViewById(R.id.urlEditText)
-            ageEditText = view.findViewById(R.id.ageEditText)
+            if (user == null) {
+                Toast.makeText(
+                    context,
+                    resources.getText(R.string.id_not_found),
+                    Toast.LENGTH_SHORT
+                ).show()
+                activity?.supportFragmentManager?.popBackStack()
+            } else {
+                nameEditText = view.findViewById(R.id.nameEditText)
+                urlEditText = view.findViewById(R.id.urlEditText)
+                ageEditText = view.findViewById(R.id.ageEditText)
 
-            save = view.save
-            save.setOnClickListener {
-                val id = System.currentTimeMillis()
-                val name = nameEditText.text.toString()
-                var url = urlEditText.text.toString()
-                if (BuildConfig.DEBUG) {
-                    url = "https://clck.ru/Gx4Nd"
-                }
+                save = view.save
+                save.setOnClickListener {
+                    val id = System.currentTimeMillis()
+                    val name = nameEditText.text.toString()
+                    var url = urlEditText.text.toString()
+                    if (BuildConfig.DEBUG) {
+                        url = "https://clck.ru/Gx4Nd"
+                    }
 
-                try {
-                    val age = ageEditText.text.toString().toInt()
+                    try {
+                        val age = ageEditText.text.toString().toInt()
 
-                    if (idStudent != -1L) {
-                        Singleton.getListStudent().remove(user)
-                        user?.let { addStudent(user.id, url, name, age) }
-                    } else addStudent(id, url, name, age)
-                } catch (nfe: NumberFormatException) {
-                    Toast.makeText(
-                        context,
-                        resources.getText(R.string.enter_age),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        if (idStudent != -1L) {
+                            Singleton.getListStudent().remove(user)
+                            addStudent(user.id, url, name, age)
+                        } else addStudent(id, url, name, age)
+                    } catch (nfe: NumberFormatException) {
+                        Toast.makeText(
+                            context,
+                            resources.getText(R.string.enter_age),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }

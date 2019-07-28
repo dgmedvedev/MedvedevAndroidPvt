@@ -17,4 +17,8 @@ class Dz11StudentListPresenter {
     fun search(text: String) {
         view?.showList(Singleton.filter(text))
     }
+
+    fun detach() {
+        this.view = null
+    }
 }

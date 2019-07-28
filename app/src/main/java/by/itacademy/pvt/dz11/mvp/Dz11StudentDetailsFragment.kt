@@ -100,6 +100,8 @@ class Dz11StudentDetailsFragment : Fragment(), Dz11StudentDetailsView {
     override fun onDetach() {
         super.onDetach()
         listener = null
+
+        presenter.detach()
     }
 
     interface Listener {
