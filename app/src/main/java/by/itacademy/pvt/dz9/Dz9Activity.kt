@@ -47,6 +47,7 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
 
     private var mapIsEmpty: String = ""
     private var mapViewIsEmpty: String = ""
+    private var headingIsEmpty: String = ""
     private var coordinateIsEmpty: String = ""
 
     private var onSuccessCompleted = false
@@ -64,6 +65,7 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
 
         mapIsEmpty = resources.getString(R.string.map_is_empty)
         mapViewIsEmpty = resources.getString(R.string.mapView_is_empty)
+        headingIsEmpty = resources.getString(R.string.heading_is_empty)
         coordinateIsEmpty = resources.getString(R.string.coordinate_is_empty)
 
         rateZoomMap = resources.getString(R.string.rate_zoom_map).toInt()
@@ -177,7 +179,7 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
                             MarkerOptions().position(location)
                                 .rotation(heading.toFloat())
                         )
-                    } ?: onError(Exception("Heading is empty"))
+                    } ?: onError(Exception(headingIsEmpty))
 
                     builder.include(location)
                 } ?: onError(Exception(coordinateIsEmpty))
@@ -196,12 +198,12 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
     }
 
     private fun getAddress(latLng: LatLng): String {
-        val geocoder = Geocoder(this)
+        val geoCoder = Geocoder(this)
         val addressList: List<Address>?
         var addressText = ""
 
         try {
-            addressList = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+            addressList = geoCoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
 
             if (addressList != null && addressList.isNotEmpty()) {
                 addressText = addressList[0].getAddressLine(0)
@@ -215,36 +217,36 @@ class Dz9Activity : FragmentActivity(), OnMapReadyCallback, Dz9CarListFragment.C
 
     override fun onStart() {
         super.onStart()
-        mapView?.onStart() ?: onError(Exception(mapViewIsEmpty))
+        mapView?.onStart()
     }
 
     override fun onStop() {
         super.onStop()
-        mapView?.onStop() ?: onError(Exception(mapViewIsEmpty))
+        mapView?.onStop()
     }
 
     override fun onResume() {
         super.onResume()
-        mapView?.onResume() ?: onError(Exception(mapViewIsEmpty))
+        mapView?.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mapView?.onPause() ?: onError(Exception(mapViewIsEmpty))
+        mapView?.onPause()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mapView?.onDestroy() ?: onError(Exception(mapViewIsEmpty))
+        mapView?.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
-        mapView?.onSaveInstanceState(outState) ?: onError(Exception(mapViewIsEmpty))
+        mapView?.onSaveInstanceState(outState)
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView?.onLowMemory() ?: onError(Exception(mapViewIsEmpty))
+        mapView?.onLowMemory()
     }
 }

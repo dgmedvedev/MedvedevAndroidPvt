@@ -72,6 +72,7 @@
 
     <string name="map_is_empty" translatable="false">Map is empty</string>
     <string name="mapView_is_empty" translatable="false">MapView is empty</string>
+    <string name="heading_is_empty" translatable="false">Heading is empty</string>
     <string name="coordinate_is_empty" translatable="false">Coordinate is empty</string>
     <string name="rate_zoom_map" translatable="false">5</string>
 
