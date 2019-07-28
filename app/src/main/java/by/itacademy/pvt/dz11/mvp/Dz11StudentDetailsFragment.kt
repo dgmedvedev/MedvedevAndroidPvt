@@ -12,12 +12,13 @@ import android.widget.TextView
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import by.itacademy.pvt.R
-import by.itacademy.pvt.dz6.Singleton
 import by.itacademy.pvt.dz6.Student
 import by.itacademy.pvt.utils.loadRoundImage
 import kotlinx.android.synthetic.main.fragment_details_student_dz8.view.*
 
-class Dz11StudentDetailsFragment : Fragment() {
+class Dz11StudentDetailsFragment : Fragment(), Dz11StudentDetailsView {
+
+    private lateinit var presenter: Dz11StudentDetailsPresenter
 
     private var listener: Listener? = null
 
@@ -52,44 +53,48 @@ class Dz11StudentDetailsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_details_student_dz8, container, false)
 
         val idStudent = arguments?.getLong(ID_STUDENT, -1)
-        if (idStudent != null) {
-            val user: Student? = Singleton.getStudentById(idStudent)
 
-            if (user == null) {
-                Toast.makeText(
-                    context,
-                    resources.getText(R.string.id_not_found),
-                    Toast.LENGTH_SHORT
-                ).show()
-                println("idStudent: = $idStudent")
-                println("idStudent: = $idStudent")
-                println("idStudent: = $idStudent")
-                println("idStudent: = $idStudent")
-                activity?.supportFragmentManager?.popBackStack()
-            } else {
-                name = view.name_details_student
-                age = view.age_details_student
-                photoStudent = view.photo_details_student
-                delete = view.delete
-                edit = view.edit
+        presenter = Dz11StudentDetailsPresenter(idStudent)
+        presenter.setView(this)
 
-                name.text = user.name
-                age.text = user.age.toString()
-                loadRoundImage(user.imageUrl, photoStudent)
+        name = view.name_details_student
+        age = view.age_details_student
+        photoStudent = view.photo_details_student
+        delete = view.delete
+        edit = view.edit
 
-                delete.setOnClickListener {
-                    Singleton.getListStudent().remove(user)
-                    activity?.supportFragmentManager?.popBackStack()
-                    if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-                        listener?.startDz11StudentListFragment()
-                }
+        presenter.getStudentById()
 
-                edit.setOnClickListener {
-                    listener?.onEditStudentClick(user.id)
-                }
-            }
-        }
         return view
+    }
+
+    override fun backStack() {
+        activity?.supportFragmentManager?.popBackStack()
+    }
+
+    override fun showStudent(student: Student) {
+        name.text = student.name
+        age.text = student.age.toString()
+        loadRoundImage(student.imageUrl, photoStudent)
+
+        delete.setOnClickListener {
+            presenter.deleteButtonWasClicked()
+            backStack()
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+                listener?.startDz11StudentListFragment()
+        }
+
+        edit.setOnClickListener {
+            listener?.onEditStudentClick(student.id)
+        }
+    }
+
+    override fun onError() {
+        Toast.makeText(
+            context,
+            resources.getText(R.string.id_not_found),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onDetach() {
