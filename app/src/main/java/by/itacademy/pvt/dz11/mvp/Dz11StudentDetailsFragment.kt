@@ -101,7 +101,7 @@ class Dz11StudentDetailsFragment : Fragment(), Dz11StudentDetailsView {
         super.onDetach()
         listener = null
 
-        presenter.detach()
+        presenter.onDestroy()
     }
 
     interface Listener {

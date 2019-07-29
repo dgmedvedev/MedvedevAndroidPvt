@@ -18,6 +18,10 @@ class Dz11StudentDetailsPresenter(private val idStudent: Long?) {
         this.view = view
     }
 
+    fun onDestroy() {
+        view = null
+    }
+
     fun getStudentById() {
         user = idStudent?.let { Singleton.getStudentById(it) }
         if (user == null) {
@@ -29,9 +33,5 @@ class Dz11StudentDetailsPresenter(private val idStudent: Long?) {
 
     fun deleteButtonWasClicked() {
         idStudent?.let { removeStudent(it) }
-    }
-
-    fun detach() {
-        this.view = null
     }
 }

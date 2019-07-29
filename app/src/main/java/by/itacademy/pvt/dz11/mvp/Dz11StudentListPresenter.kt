@@ -6,7 +6,7 @@ class Dz11StudentListPresenter {
 
     private var view: Dz11StudentListView? = null
 
-    fun setView(view: Dz11StudentListView) {
+    fun setView(view: Dz11StudentListView?) {
         this.view = view
     }
 
@@ -16,9 +16,5 @@ class Dz11StudentListPresenter {
 
     fun search(text: String) {
         view?.showList(Singleton.filter(text))
-    }
-
-    fun detach() {
-        this.view = null
     }
 }

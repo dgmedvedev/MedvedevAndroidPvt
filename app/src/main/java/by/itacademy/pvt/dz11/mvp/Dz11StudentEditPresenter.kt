@@ -14,6 +14,10 @@ class Dz11StudentEditPresenter(private val idStudent: Long) {
         this.view = view
     }
 
+    fun onDestroy() {
+        view = null
+    }
+
     fun getStudentById() {
         val user = Singleton.getStudentById(idStudent)
         if (user == null) {
@@ -52,10 +56,10 @@ class Dz11StudentEditPresenter(private val idStudent: Long) {
     private fun validateData(url: String, name: String, age: Int): Boolean {
         if (!pattern.matcher(url).matches()) throw HttpFormatException()
         else if (name.isEmpty()) {
-            view?.onError("Name: Must be filled in")
+            view?.onError("Name must be filled in")
             return false
         } else if (age < 0) {
-            view?.onError("Age: Must be a positive integer")
+            view?.onError("Age must be a positive integer")
             return false
         }
         return true

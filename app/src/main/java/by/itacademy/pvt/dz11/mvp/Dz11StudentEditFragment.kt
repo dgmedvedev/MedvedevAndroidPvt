@@ -88,7 +88,7 @@ class Dz11StudentEditFragment : Fragment(), Dz11StudentEditView {
                 presenter.saveStudent(url, name, age)
                 listener?.startDz11StudentListFragment()
             } catch (nfe: NumberFormatException) {
-                onError("Age must be a positive integer")
+                onError("Age must be an integer")
             } catch (hfe: Dz11StudentEditPresenter.HttpFormatException) {
                 onError("Not valid URL")
             }
@@ -117,6 +117,8 @@ class Dz11StudentEditFragment : Fragment(), Dz11StudentEditView {
     override fun onDetach() {
         super.onDetach()
         listener = null
+
+        presenter.onDestroy()
     }
 
     interface Listener {

@@ -6,5 +6,4 @@ interface Dz11StudentEditView {
     fun backStack() {}
     fun showStudent(student: Student) {}
     fun onError(error: String) {}
-    fun addName() {}
 }
