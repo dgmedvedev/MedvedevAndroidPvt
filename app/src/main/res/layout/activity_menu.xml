@@ -41,10 +41,6 @@
                 style="@style/ButtonActivityMenu"
                 android:text="@string/dz6"/>
         <Button
-                android:id="@+id/dz7"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz7"/>
-        <Button
                 android:id="@+id/dz8"
                 style="@style/ButtonActivityMenu"
                 android:text="@string/dz8"/>
@@ -52,10 +48,6 @@
                 android:id="@+id/dz9"
                 style="@style/ButtonActivityMenu"
                 android:text="@string/dz9"/>
-        <Button
-                android:id="@+id/dz10"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz10"/>
         <Button
                 android:id="@+id/dz11"
                 style="@style/ButtonActivityMenu"
