@@ -1,4 +1,4 @@
-package by.itacademy.pvt.dz12
+package by.itacademy.pvt.dz12.network
 
 import by.itacademy.pvt.BuildConfig
 import com.google.gson.Gson

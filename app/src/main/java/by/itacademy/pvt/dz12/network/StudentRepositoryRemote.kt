@@ -1,5 +1,6 @@
-package by.itacademy.pvt.dz12
+package by.itacademy.pvt.dz12.network
 
+import by.itacademy.pvt.dz12.Student
 import io.reactivex.Observable
 
 class StudentRepositoryRemote(private val api: StudentApi) : StudentRepository {
@@ -23,6 +24,10 @@ class StudentRepositoryRemote(private val api: StudentApi) : StudentRepository {
 
     override fun getById(id: String): Observable<Student> {
         return api.getStudentById(id)
+    }
+
+    override fun getById111(id: String): Observable<Student> {
+        return api.getStudentById111(id)
     }
 
     override fun filter(search: String): Observable<List<Student>> {

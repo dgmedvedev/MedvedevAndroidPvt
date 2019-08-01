@@ -37,6 +37,7 @@
         <activity android:name="by.itacademy.pvt.dz11.mvp.Dz11MvpActivity"/>
         <activity android:name="by.itacademy.pvt.dz11.mvvm.Dz11MvvmActivity"/>
         <activity android:name="by.itacademy.pvt.dz12.Dz12Activity"/>
+        <activity android:name="by.itacademy.pvt.dz12.Dz12FragmentActivity"/>
 
         <activity android:name="by.itacademy.pvt.MenuActivity">
             <intent-filter>

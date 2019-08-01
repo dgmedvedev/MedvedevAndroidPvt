@@ -4,6 +4,8 @@ import android.app.Activity
 import android.os.Bundle
 import android.widget.TextView
 import by.itacademy.pvt.R
+import by.itacademy.pvt.dz12.network.provideStudentRepository
+import by.itacademy.pvt.dz12.network.provideStudentRepositoryByID
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -44,19 +46,22 @@ class Dz12Activity : Activity() {
    //             textView.text = data.toString()
    //         }
    */
+        val idStudent = "BB32B1CB-C51F-B5E8-FFB1-9C91A0711D00"
+
         disposable = repository
             .getList(10, 0)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->
                 textView.text = data.toString()
-                textViewId.text = data.find { it.id == "9D650B02-905D-679B-FF05-DAD9C1B32000" }.toString()
+                textViewId.text = data.find { it.id == idStudent }.toString()
             }, { throwable ->
                 textViewId.text = throwable.toString()
             })
 
         disposableId = repositoryId
-            .getById("9D650B02-905D-679B-FF05-DAD9C1B32000")
+            .getById("hjhgjhg")
+            //       .filter{it.id == idStudent}
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->
