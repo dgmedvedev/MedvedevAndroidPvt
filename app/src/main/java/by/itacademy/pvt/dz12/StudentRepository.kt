@@ -1,0 +1,14 @@
+package by.itacademy.pvt.dz12
+
+import io.reactivex.Observable
+
+interface StudentRepository {
+
+    fun getList(pageSize: Int, offset: Int): Observable<List<Student>>
+
+    fun getById(id: String): Observable<Student>
+
+    fun filter(search: String): Observable<List<Student>>
+
+    fun remove(id: String): Observable<Boolean>
+}
