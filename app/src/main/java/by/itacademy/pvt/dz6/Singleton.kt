@@ -19,4 +19,14 @@ object Singleton {
     fun getStudentById(id: Long): Student? {
         return listStudent.find { it.id == id }
     }
+
+    fun addStudent(student: Student) {
+        val index = listStudent.indexOfFirst { it.id == student.id }
+
+        if (index != -1) {
+            listStudent[index] = student
+        } else {
+            listStudent.add(student)
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package by.itacademy.pvt.dz8
+package by.itacademy.pvt.dz11.mvp
 
 import android.content.Context
 import android.content.res.Configuration
@@ -12,12 +12,13 @@ import android.widget.TextView
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import by.itacademy.pvt.R
-import by.itacademy.pvt.dz6.Singleton
 import by.itacademy.pvt.dz6.Student
 import by.itacademy.pvt.utils.loadRoundImage
 import kotlinx.android.synthetic.main.fragment_details_student_dz8.view.*
 
-class Dz8StudentDetailsFragment : Fragment() {
+class Dz11StudentDetailsFragment : Fragment(), Dz11StudentDetailsView {
+
+    private lateinit var presenter: Dz11StudentDetailsPresenter
 
     private var listener: Listener? = null
 
@@ -30,8 +31,8 @@ class Dz8StudentDetailsFragment : Fragment() {
     companion object {
         private const val ID_STUDENT = "ID_STUDENT"
 
-        fun getInstance(id: Long): Dz8StudentDetailsFragment {
-            val fragment = Dz8StudentDetailsFragment()
+        fun getInstance(id: Long): Dz11StudentDetailsFragment {
+            val fragment = Dz11StudentDetailsFragment()
             val bundle = Bundle()
             bundle.putLong(ID_STUDENT, id)
 
@@ -53,49 +54,58 @@ class Dz8StudentDetailsFragment : Fragment() {
 
         val idStudent = arguments?.getLong(ID_STUDENT, -1)
 
-        if (idStudent != null) {
-            val user: Student? = Singleton.getStudentById(idStudent)
+        presenter = Dz11StudentDetailsPresenter(idStudent)
+        presenter.setView(this)
 
-            if (user == null) {
-                Toast.makeText(
-                    context,
-                    resources.getText(R.string.id_not_found),
-                    Toast.LENGTH_SHORT
-                ).show()
-                activity?.supportFragmentManager?.popBackStack()
-            } else {
-                name = view.name_details_student
-                age = view.age_details_student
-                photoStudent = view.photo_details_student
-                delete = view.delete
-                edit = view.edit
+        name = view.name_details_student
+        age = view.age_details_student
+        photoStudent = view.photo_details_student
+        delete = view.delete
+        edit = view.edit
 
-                name.text = user.name
-                age.text = user.age.toString()
-                loadRoundImage(user.imageUrl, photoStudent)
+        presenter.getStudentById()
 
-                delete.setOnClickListener {
-                    Singleton.getListStudent().remove(user)
-                    activity?.supportFragmentManager?.popBackStack()
-                    if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-                        listener?.startDz8StudentListFragment()
-                }
-
-                edit.setOnClickListener {
-                    listener?.onEditStudentClick(user.id)
-                }
-            }
-        }
         return view
+    }
+
+    override fun backStack() {
+        activity?.supportFragmentManager?.popBackStack()
+    }
+
+    override fun showStudent(student: Student) {
+        name.text = student.name
+        age.text = student.age.toString()
+        loadRoundImage(student.imageUrl, photoStudent)
+
+        delete.setOnClickListener {
+            presenter.deleteButtonWasClicked()
+            backStack()
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+                listener?.startDz11StudentListFragment()
+        }
+
+        edit.setOnClickListener {
+            listener?.onEditStudentClick(student.id)
+        }
+    }
+
+    override fun onError() {
+        Toast.makeText(
+            context,
+            resources.getText(R.string.id_not_found),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onDetach() {
         super.onDetach()
         listener = null
+
+        presenter.onDestroy()
     }
 
     interface Listener {
         fun onEditStudentClick(id: Long)
-        fun startDz8StudentListFragment()
+        fun startDz11StudentListFragment()
     }
 }
