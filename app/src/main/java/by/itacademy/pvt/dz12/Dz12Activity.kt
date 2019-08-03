@@ -12,8 +12,6 @@ import io.reactivex.schedulers.Schedulers
 
 class Dz12Activity : Activity() {
 
-    //  private val observable = Observable.just("Hello","222","333","444")
-
     private val repository = provideStudentRepository()
     private val repositoryId = provideStudentRepositoryByID()
 
@@ -28,24 +26,6 @@ class Dz12Activity : Activity() {
         val textViewId = findViewById<TextView>(R.id.textViewId)
         val textViewId2 = findViewById<TextView>(R.id.textViewId2)
 
-/*
-        disposable = observable
-            .delay(3, TimeUnit.SECONDS)
-         //   .throttleFirst(3, TimeUnit.SECONDS)// на сколько часто хотим получать данные после начала ввода
-         //   .debounce {  } - на сколько часто хотим получать данные
-            .filter{it !="444"} // не хочу получать "Hello"
-      //      .map{it.toInt()} // конвертируем данные входящие в Int - не обязательный метод
-            .subscribeOn(Schedulers.io()) // говорит в каком потоке выполнить (здесь в главном потоке)
-            .observeOn(AndroidSchedulers.mainThread()) // говорит в каком потоке вернуть результат
-            .subscribe({data->
-            textView.text = data.toString()
-            },{throwable->
-                textView.text = throwable.toString()
-            })
-   //         .subscribe{data->  - этот вариант без обработки ошибок
-   //             textView.text = data.toString()
-   //         }
-   */
         val idStudent = "BB32B1CB-C51F-B5E8-FFB1-9C91A0711D00"
 
         disposable = repository
@@ -60,8 +40,9 @@ class Dz12Activity : Activity() {
             })
 
         disposableId = repositoryId
-            .getById("hjhgjhg")
-            //       .filter{it.id == idStudent}
+            .getById(idStudent)
+            // .filter{it.id == idStudent}
+            // .map{it.toInt()} // конвертируем входящие данные в Int - не обязательный метод
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->

@@ -9,8 +9,6 @@ interface StudentRepository {
 
     fun getById(id: String): Observable<Student>
 
-    fun getById111(id: String): Observable<Student>
-
     fun filter(search: String): Observable<List<Student>>
 
     fun remove(id: String): Observable<Boolean>
