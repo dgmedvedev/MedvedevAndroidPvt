@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import by.itacademy.pvt.BuildConfig
 import by.itacademy.pvt.R
 import by.itacademy.pvt.dz12.Student
-import kotlinx.android.synthetic.main.fragment_edit_student_dz8.view.*
 
 class Dz12StudentEditFragment : Fragment(), Dz12StudentEditView {
 
@@ -24,7 +23,7 @@ class Dz12StudentEditFragment : Fragment(), Dz12StudentEditView {
 
     private var listener: Listener? = null
 
-    private lateinit var save: Button
+    private lateinit var saveButton: Button
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -65,19 +64,25 @@ class Dz12StudentEditFragment : Fragment(), Dz12StudentEditView {
         urlEditText = view.findViewById(R.id.urlEditText)
         ageEditText = view.findViewById(R.id.ageEditText)
 
-        save = view.save
+        saveButton = view.findViewById(R.id.save)
 
         if (idStudent != "-1") {
             presenter.getStudentById()
         }
 
-        save.setOnClickListener {
+        saveButton.setOnClickListener {
 
             var name = nameEditText.text.toString()
             if (name == "")
                 name = anonymous
 
             try {
+                // если эти исключения обрабатывать в презентере,
+                // выкидывает на страницу ListFragment и сообщение об ошибке
+                // Обрабатываю здесь, чтобы на странице EditFragment просто
+                // отображались сообщения об ошибке и пользователь оставался на ней,
+                // пока не введет правильные значения или не нажмет Назад
+
                 val age = ageEditText.text.toString().toInt()
 
                 var url = urlEditText.text.toString()

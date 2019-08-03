@@ -1,8 +1,8 @@
 package by.itacademy.pvt.dz12.mvp
 
 import android.util.Patterns
+import by.itacademy.pvt.dz12.Dz12StudentData
 import by.itacademy.pvt.dz12.Student
-import by.itacademy.pvt.dz12.dz12Singleton
 
 class Dz12StudentEditPresenter(private val idStudent: String) {
 
@@ -19,7 +19,7 @@ class Dz12StudentEditPresenter(private val idStudent: String) {
     }
 
     fun getStudentById() {
-        val user = dz12Singleton.getStudentById(idStudent)
+        val user = Dz12StudentData.getStudentById(idStudent)
         if (user == null) {
             view?.onError("User is empty")
             view?.backStack()
@@ -29,9 +29,9 @@ class Dz12StudentEditPresenter(private val idStudent: String) {
 
     fun saveStudent(url: String, name: String, age: Int) {
         if (validateData(url, name, age))
-            when (dz12Singleton.getStudentById(idStudent)) {
+            when (Dz12StudentData.getStudentById(idStudent)) {
                 null -> {
-                    dz12Singleton.addStudent(
+                    Dz12StudentData.addStudent(
                         Student(
                             id = System.currentTimeMillis().toString(),
                             imageUrl = url,
@@ -41,7 +41,7 @@ class Dz12StudentEditPresenter(private val idStudent: String) {
                     )
                 }
                 else -> {
-                    dz12Singleton.addStudent(
+                    Dz12StudentData.addStudent(
                         Student(
                             id = idStudent,
                             imageUrl = url,

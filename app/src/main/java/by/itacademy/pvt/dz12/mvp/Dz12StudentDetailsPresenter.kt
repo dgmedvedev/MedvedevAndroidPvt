@@ -1,7 +1,7 @@
 package by.itacademy.pvt.dz12.mvp
 
+import by.itacademy.pvt.dz12.Dz12StudentData
 import by.itacademy.pvt.dz12.Student
-import by.itacademy.pvt.dz12.dz12Singleton
 
 class Dz12StudentDetailsPresenter(private val idStudent: String?) {
 
@@ -9,9 +9,9 @@ class Dz12StudentDetailsPresenter(private val idStudent: String?) {
     private var user: Student? = null
 
     private fun removeStudent(idStudent: String) {
-        dz12Singleton.getListStudent().find {
+        Dz12StudentData.getListStudent().find {
             it.id == idStudent
-        }?.apply { dz12Singleton.getListStudent().remove(this) }
+        }?.apply { Dz12StudentData.deleteStudent(this) }
     }
 
     fun setView(view: Dz12StudentDetailsView) {
@@ -23,7 +23,7 @@ class Dz12StudentDetailsPresenter(private val idStudent: String?) {
     }
 
     fun getStudentById() {
-        user = idStudent?.let { dz12Singleton.getStudentById(it) }
+        user = idStudent?.let { Dz12StudentData.getStudentById(it) }
         if (user == null) {
             view?.onError()
             view?.backStack()

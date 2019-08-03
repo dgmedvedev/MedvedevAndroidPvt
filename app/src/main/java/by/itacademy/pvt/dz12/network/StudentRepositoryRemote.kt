@@ -1,6 +1,7 @@
 package by.itacademy.pvt.dz12.network
 
 import by.itacademy.pvt.dz12.Student
+import io.reactivex.Completable
 import io.reactivex.Observable
 
 class StudentRepositoryRemote(private val api: StudentApi) : StudentRepository {
@@ -17,7 +18,15 @@ class StudentRepositoryRemote(private val api: StudentApi) : StudentRepository {
         return api.searchByName(pageSize, offset, name)
     }
 
-    override fun remove(id: String): Observable<Boolean> {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+    override fun addStudent(student: Student): Observable<Student> {
+        return api.addStudent(student)
+    }
+
+    override fun updateStudent(student: Student): Completable {
+        return api.updateStudent(student.id, student)
+    }
+
+    override fun deleteStudent(student: Student): Completable {
+        return api.deleteStudent(student.id)
     }
 }

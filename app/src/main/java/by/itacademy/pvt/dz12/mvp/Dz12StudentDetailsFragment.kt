@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import by.itacademy.pvt.R
 import by.itacademy.pvt.dz12.Student
 import by.itacademy.pvt.utils.loadRoundImage
-import kotlinx.android.synthetic.main.fragment_details_student_dz8.view.*
 
 class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
 
@@ -22,11 +21,11 @@ class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
 
     private var listener: Listener? = null
 
-    private lateinit var name: TextView
-    private lateinit var age: TextView
-    private lateinit var photoStudent: ImageView
-    private lateinit var delete: Button
-    private lateinit var edit: Button
+    private lateinit var nameTextView: TextView
+    private lateinit var ageTextView: TextView
+    private lateinit var photoStudentImageView: ImageView
+    private lateinit var deleteButton: Button
+    private lateinit var editButton: Button
 
     companion object {
         private const val ID_STUDENT = "ID_STUDENT"
@@ -57,11 +56,11 @@ class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
         presenter = Dz12StudentDetailsPresenter(idStudent)
         presenter.setView(this)
 
-        name = view.name_details_student
-        age = view.age_details_student
-        photoStudent = view.photo_details_student
-        delete = view.delete
-        edit = view.edit
+        nameTextView = view.findViewById(R.id.name_details_student)
+        ageTextView = view.findViewById(R.id.age_details_student)
+        photoStudentImageView = view.findViewById(R.id.photo_details_student)
+        deleteButton = view.findViewById(R.id.delete)
+        editButton = view.findViewById(R.id.edit)
 
         presenter.getStudentById()
 
@@ -73,18 +72,18 @@ class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
     }
 
     override fun showStudent(student: Student) {
-        name.text = student.name
-        age.text = student.age.toString()
-        loadRoundImage(student.imageUrl, photoStudent)
+        nameTextView.text = student.name
+        ageTextView.text = student.age.toString()
+        loadRoundImage(student.imageUrl, photoStudentImageView)
 
-        delete.setOnClickListener {
+        deleteButton.setOnClickListener {
             presenter.deleteButtonWasClicked()
             backStack()
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
                 listener?.startDz12StudentListFragment()
         }
 
-        edit.setOnClickListener {
+        editButton.setOnClickListener {
             listener?.onEditStudentClick(student.id)
         }
     }

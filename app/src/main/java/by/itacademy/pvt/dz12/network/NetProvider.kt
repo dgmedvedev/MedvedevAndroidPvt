@@ -24,7 +24,7 @@ object NetProvider {
 
         val okHttpBuilder = OkHttpClient.Builder()
 
-        if (BuildConfig.DEBUG) { // сработает только в Debag режиме
+        if (BuildConfig.DEBUG) { // сработает только в Debug режиме
             val loggin = HttpLoggingInterceptor() // задаем интерцептер - перехватывает запросы
             loggin.level = HttpLoggingInterceptor.Level.BODY
             okHttpBuilder.addInterceptor(loggin)

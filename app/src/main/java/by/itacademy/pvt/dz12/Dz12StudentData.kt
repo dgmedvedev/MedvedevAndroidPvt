@@ -8,12 +8,14 @@ import io.reactivex.schedulers.Schedulers
 object Dz12StudentData {
     private const val PAGE_SIZE = 100
 
-    private var studentsList: MutableList<Student> = mutableListOf()
+    private var listStudents: MutableList<Student> = mutableListOf()
 
     private val repository = provideStudentRepository()
     private var disposable: Disposable? = null
 
-    fun getStudentList(): MutableList<Student> = studentsList
+    fun getListStudent(): MutableList<Student> {
+        return listStudents
+    }
 
     fun loadStudentList(callback: Callback) {
         disposable = repository
@@ -21,17 +23,42 @@ object Dz12StudentData {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                studentsList = it
+                listStudents = it
                 callback.returnResult()
             }
     }
 
     fun getStudentById(id: String): Student? {
-        return studentsList.find { it.id == id }
+        return listStudents.find { it.id == id }
     }
-/*
-    fun deleteStudentById(student: Student) {
-        studentsList.remove(student)
+
+    fun addStudent(student: Student) {
+        var index = listStudents.indexOfFirst { it.id == student.id }
+
+        if (index != -1) {
+            listStudents[index] = student
+
+            disposable = repository
+                .updateStudent(student)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+        } else {
+            listStudents.add(student)
+
+            disposable = repository
+                .addStudent(student)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    index = listStudents.indexOf(student)
+                    listStudents[index] = it
+                }
+        }
+    }
+
+    fun deleteStudent(student: Student) {
+        listStudents.remove(student)
         disposable = repository
             .deleteStudent(student)
             .subscribeOn(Schedulers.io())
@@ -39,40 +66,11 @@ object Dz12StudentData {
             .subscribe()
     }
 
-    fun updateStudent(newStudent: Student) {
-        val id = newStudent.id
-        val oldStudent = studentsList.find { it.id == id }
-        val index = studentsList.indexOf(oldStudent)
-        studentsList[index] = newStudent
-        disposable = repository
-            .updateStudent(newStudent)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
-    }
-
-    fun addNewStudent(student: Student) {
-        studentsList.add(student)
-        disposable = repository
-            .saveNewStudent(student)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                val index = studentsList.indexOf(student)
-                studentsList[index] = it
-            }
-    }
-
-    fun searchList(string: String): List<Student> {
-        return studentsList.filter { it.name.contains(string, true) }
-    }
-
-    fun getId(): String {
-        return System.currentTimeMillis().toString()
+    fun filter(search: String): List<Student> {
+        return listStudents.filter { it.name.toUpperCase().contains(search.toUpperCase()) }
     }
 
     fun dispose() {
         disposable?.dispose()
     }
-    */
 }
