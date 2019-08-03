@@ -6,14 +6,14 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import by.itacademy.pvt.R
-import by.itacademy.pvt.dz12.fragments.Dz12StudentDetails
-import by.itacademy.pvt.dz12.fragments.Dz12StudentEdit
-import by.itacademy.pvt.dz12.fragments.Dz12StudentList
+import by.itacademy.pvt.dz12.mvp.Dz12StudentDetailsFragment
+import by.itacademy.pvt.dz12.mvp.Dz12StudentEditFragment
+import by.itacademy.pvt.dz12.mvp.Dz12StudentListFragment
 
-class Dz12FragmentActivity : FragmentActivity(),
-    Dz12StudentList.Listener,
-    Dz12StudentDetails.Listener,
-    Dz12StudentEdit.Listener {
+class Dz12MvpActivity : FragmentActivity(),
+    Dz12StudentListFragment.Listener,
+    Dz12StudentDetailsFragment.Listener,
+    Dz12StudentEditFragment.Listener {
 
     private val containerOne = R.id.containerOne
     private val containerTwo = R.id.containerTwo
@@ -30,12 +30,12 @@ class Dz12FragmentActivity : FragmentActivity(),
 
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-            startDz12StudentList()
+            startDz12StudentListFragment()
         } else if (savedInstanceState == null && !isPhone) {
 
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
-            startDz12StudentList()
+            startDz12StudentListFragment()
         }
     }
 
@@ -54,26 +54,26 @@ class Dz12FragmentActivity : FragmentActivity(),
             containerAddFragment(containerTwo, fragment)
     }
 
-    override fun startDz12StudentList() {
-        containerAddFragment(containerOne, Dz12StudentList())
+    override fun startDz12StudentListFragment() {
+        containerAddFragment(containerOne, Dz12StudentListFragment())
 
         val transaction = supportFragmentManager.beginTransaction()
 
-        if (supportFragmentManager.findFragmentById(R.id.containerTwo) is Dz12StudentEdit) {
-            transaction.remove(supportFragmentManager.findFragmentById(R.id.containerTwo) as Dz12StudentEdit)
+        if (supportFragmentManager.findFragmentById(R.id.containerTwo) is Dz12StudentEditFragment) {
+            transaction.remove(supportFragmentManager.findFragmentById(R.id.containerTwo) as Dz12StudentEditFragment)
             transaction.commit()
         }
     }
 
-    override fun startDz12StudentEdit() {
-        chooseContainer(Dz12StudentEdit.getInstance())
+    override fun startDz12StudentEditFragment() {
+        chooseContainer(Dz12StudentEditFragment.getInstance())
     }
 
-    override fun onEditStudentClick(id: Long) {
-        chooseContainer(Dz12StudentEdit.getInstance(id))
+    override fun onEditStudentClick(id: String) {
+        chooseContainer(Dz12StudentEditFragment.getInstance(id))
     }
 
-    override fun onStudentClick(id: Long) {
-        chooseContainer(Dz12StudentDetails.getInstance(id))
+    override fun onStudentClick(id: String) {
+        chooseContainer(Dz12StudentDetailsFragment.getInstance(id))
     }
 }

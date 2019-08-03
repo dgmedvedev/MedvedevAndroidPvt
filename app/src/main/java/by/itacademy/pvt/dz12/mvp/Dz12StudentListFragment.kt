@@ -1,4 +1,4 @@
-package by.itacademy.pvt.dz12.fragments
+package by.itacademy.pvt.dz12.mvp
 
 import android.content.Context
 import android.os.Bundle
@@ -15,15 +15,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.itacademy.pvt.R
-import by.itacademy.pvt.dz6.Dz6ListAdapter
-import by.itacademy.pvt.dz6.Singleton
-import by.itacademy.pvt.dz6.Student
-import by.itacademy.pvt.utils.AppPrefManager
+import by.itacademy.pvt.dz12.adapter.Dz12ListAdapter
+import by.itacademy.pvt.dz12.Student
+import by.itacademy.pvt.dz8.AppPrefManager
 import kotlinx.android.synthetic.main.fragment_list_student_dz8.view.*
 
-class Dz12StudentList : Fragment(), Dz6ListAdapter.ClickListener {
+class Dz12StudentListFragment : Fragment(), Dz12ListAdapter.ClickListener, Dz12StudentListView {
 
-    private var adapter: Dz6ListAdapter? = null
+    private lateinit var presenter: Dz12StudentListPresenter
+
+    private var adapter: Dz12ListAdapter? = null
     private var listener: Listener? = null
 
     private lateinit var recyclerView: RecyclerView
@@ -41,6 +42,9 @@ class Dz12StudentList : Fragment(), Dz6ListAdapter.ClickListener {
 
         val view = inflater.inflate(R.layout.fragment_list_student_dz8, container, false)
 
+        presenter = Dz12StudentListPresenter()
+        presenter.setView(this)
+
         add = view.add_button
         search = view.search
 
@@ -52,8 +56,10 @@ class Dz12StudentList : Fragment(), Dz6ListAdapter.ClickListener {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.isNestedScrollingEnabled = false
 
-        adapter = Dz6ListAdapter(Singleton.getListStudent(), this)
-        adapter?.updateList(Singleton.filter(search.text.toString()))
+        adapter = Dz12ListAdapter(emptyList(), this)
+
+        presenter.load()
+        presenter.search(search.text.toString())
 
         search.addTextChangedListener(object : TextWatcher {
 
@@ -66,16 +72,20 @@ class Dz12StudentList : Fragment(), Dz6ListAdapter.ClickListener {
             override fun afterTextChanged(p0: Editable?) {
                 timer = Handler()
                 timer?.postDelayed({
-                    adapter?.updateList(Singleton.filter(p0.toString()))
+                    presenter.search(p0.toString())
                 }, 500)
             }
         })
 
         add.setOnClickListener {
-            listener?.startDz12StudentEdit()
+            listener?.startDz12StudentEditFragment()
         }
 
         return view
+    }
+
+    override fun showList(listStudent: List<Student>) {
+        adapter?.updateList(listStudent)
     }
 
     override fun onStart() {
@@ -99,7 +109,7 @@ class Dz12StudentList : Fragment(), Dz6ListAdapter.ClickListener {
     }
 
     interface Listener {
-        fun startDz12StudentEdit()
-        fun onStudentClick(id: Long)
+        fun startDz12StudentEditFragment()
+        fun onStudentClick(id: String)
     }
 }

@@ -6,11 +6,11 @@ data class Student(
     @SerializedName("objectId")
     val id: String,
 
-    @SerializedName("name")
-    val name: String,
-
     @SerializedName("imageUrl")
     val imageUrl: String,
+
+    @SerializedName("name")
+    val name: String,
 
     @SerializedName("age")
     val age: Int

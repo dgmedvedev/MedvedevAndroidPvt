@@ -28,8 +28,10 @@ class Dz12Activity : Activity() {
 
         val idStudent = "BB32B1CB-C51F-B5E8-FFB1-9C91A0711D00"
 
+        val studentsList: List<Student> = listOf()
+
         disposable = repository
-            .getList(10, 0)
+            .getList(10)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ data ->
