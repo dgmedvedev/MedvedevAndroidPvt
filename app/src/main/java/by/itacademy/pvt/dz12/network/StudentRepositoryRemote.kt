@@ -6,8 +6,8 @@ import io.reactivex.Observable
 
 class StudentRepositoryRemote(private val api: StudentApi) : StudentRepository {
 
-    override fun getList(pageSize: Int): Observable<MutableList<Student>> {
-        return api.getStudents(pageSize)
+    override fun getList(pageSize: Int, offset: Int): Observable<MutableList<Student>> {
+        return api.getStudents(pageSize, offset)
     }
 
     override fun getById(id: String): Observable<Student> {
@@ -28,5 +28,9 @@ class StudentRepositoryRemote(private val api: StudentApi) : StudentRepository {
 
     override fun deleteStudent(student: Student): Completable {
         return api.deleteStudent(student.id)
+    }
+
+    override fun deleteStudentById(id: String): Completable {
+        return api.deleteStudent(id)
     }
 }

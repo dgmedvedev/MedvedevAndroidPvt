@@ -60,12 +60,15 @@
     <string name="save">Save</string>
     <string name="search">Search</string>
     <string name="enter_age">Enter age</string>
+    <string name="age_integer" translatable="false">Age must be an integer</string>
     <string name="enter_name">Enter name</string>
     <string name="enter_url">Enter URL</string>
     <string name="not_valid_url">Not valid URL</string>
+    <string name="url_debug" translatable="false">https://clck.ru/Gx4Nd</string>
     <string name="anonymous">Anonymous</string>
     <string name="image_not_found">Image not found</string>
     <string name="id_not_found">ID not found</string>
+    <string name="student_not_found">Student not found</string>
 
     <string name="latitude">Latitude:</string>
     <string name="longitude">Longitude:</string>
@@ -75,5 +78,7 @@
     <string name="heading_is_empty" translatable="false">Heading is empty</string>
     <string name="coordinate_is_empty" translatable="false">Coordinate is empty</string>
     <string name="rate_zoom_map" translatable="false">5</string>
+
+    <string name="default_value" translatable="false">-1</string>
 
 </resources>

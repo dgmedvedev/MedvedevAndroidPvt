@@ -1,12 +1,25 @@
 package by.itacademy.pvt.dz12.mvp
 
 import android.util.Patterns
-import by.itacademy.pvt.dz12.Dz12StudentData
+import by.itacademy.pvt.R
+import by.itacademy.pvt.app.App
 import by.itacademy.pvt.dz12.Student
+import by.itacademy.pvt.dz12.network.provideStudentRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
 
-class Dz12StudentEditPresenter(private val idStudent: String) {
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+
+class Dz12StudentEditPresenter(private val idStudent: String?) {
+
+    private val repository = provideStudentRepository()
+    private var disposable: Disposable? = null
 
     private var view: Dz12StudentEditView? = null
+
+    private val idNotFound = App.instance.getString(R.string.id_not_found)
+    private val defaultValue = App.instance.getString(R.string.default_value)
+    private val studentNotFound = App.instance.getString(R.string.student_not_found)
 
     private val pattern = Patterns.WEB_URL
 
@@ -14,43 +27,50 @@ class Dz12StudentEditPresenter(private val idStudent: String) {
         this.view = view
     }
 
-    fun onDestroy() {
+    fun detach() {
+        disposable?.dispose()
         view = null
     }
 
-    fun getStudentById() {
-        val user = Dz12StudentData.getStudentById(idStudent)
-        if (user == null) {
-            view?.onError("User is empty")
-            view?.backStack()
-        } else
-            view?.showStudent(user)
+    fun showStudentById() {
+        idStudent?.let { id ->
+            disposable = repository
+                .getById(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { student ->
+                    if (student == null) {
+                        view?.onError(studentNotFound)
+                        view?.backStack()
+                    } else
+                        view?.showStudent(student)
+                }
+        } ?: view?.onError(idNotFound)
     }
 
     fun saveStudent(url: String, name: String, age: Int) {
-        if (validateData(url, name, age))
-            when (Dz12StudentData.getStudentById(idStudent)) {
-                null -> {
-                    Dz12StudentData.addStudent(
-                        Student(
-                            id = System.currentTimeMillis().toString(),
-                            imageUrl = url,
-                            name = name,
-                            age = age
-                        )
-                    )
-                }
-                else -> {
-                    Dz12StudentData.addStudent(
-                        Student(
-                            id = idStudent,
-                            imageUrl = url,
-                            name = name,
-                            age = age
-                        )
-                    )
+        idStudent?.let { id ->
+            if (validateData(url, name, age)) {
+                when {
+                    id != defaultValue -> {
+                        disposable = repository
+                            .updateStudent(Student(id, url, name, age))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe()
+                    }
+                    id == defaultValue -> {
+                        val newId = System.currentTimeMillis().toString()
+                        disposable = repository
+                            .addStudent(Student(newId, url, name, age))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe()
+                    }
+                    else -> view?.onError(idNotFound)
                 }
             }
+        }
     }
 
     private fun validateData(url: String, name: String, age: Int): Boolean {

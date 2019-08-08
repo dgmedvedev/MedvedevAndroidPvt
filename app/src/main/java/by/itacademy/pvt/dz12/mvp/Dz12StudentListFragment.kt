@@ -64,9 +64,10 @@ class Dz12StudentListFragment : Fragment(), Dz12ListAdapter.ClickListener, Dz12S
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.isNestedScrollingEnabled = false
 
-        adapter = Dz12ListAdapter(emptyList(), this)
-
+        adapter = Dz12ListAdapter(presenter.load(), this)
         presenter.load()
+        recyclerView.adapter = adapter
+
         updateList()
 
         searchEditText.addTextChangedListener(object : TextWatcher {
@@ -116,7 +117,7 @@ class Dz12StudentListFragment : Fragment(), Dz12ListAdapter.ClickListener, Dz12S
     override fun onPause() {
         super.onPause()
         recyclerView.adapter = adapter
-        updateList()
+        //    updateList()
     }
 
     override fun onStop() {

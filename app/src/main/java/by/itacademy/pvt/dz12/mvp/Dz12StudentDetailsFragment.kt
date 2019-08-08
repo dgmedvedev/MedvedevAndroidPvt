@@ -3,6 +3,7 @@ package by.itacademy.pvt.dz12.mvp
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,8 @@ class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
     private lateinit var deleteButton: Button
     private lateinit var editButton: Button
 
+    private lateinit var defaultValue: String
+
     companion object {
         private const val ID_STUDENT = "ID_STUDENT"
 
@@ -49,9 +52,11 @@ class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        defaultValue = resources.getString(R.string.default_value)
+
         val view = inflater.inflate(R.layout.fragment_details_student_dz8, container, false)
 
-        val idStudent = arguments?.getString(ID_STUDENT, "-1")
+        val idStudent = arguments?.getString(ID_STUDENT, defaultValue)
 
         presenter = Dz12StudentDetailsPresenter(idStudent)
         presenter.setView(this)
@@ -62,7 +67,9 @@ class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
         deleteButton = view.findViewById(R.id.delete)
         editButton = view.findViewById(R.id.edit)
 
-        presenter.getStudentById()
+        defaultValue
+
+        presenter.showStudentById()
 
         return view
     }
@@ -78,9 +85,15 @@ class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
 
         deleteButton.setOnClickListener {
             presenter.deleteButtonWasClicked()
-            backStack()
+            val timer = Handler()
+            timer.postDelayed({
+                backStack()
+            }, 100)
+
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-                listener?.startDz12StudentListFragment()
+                timer.postDelayed({
+                    listener?.startDz12StudentListFragment()
+                }, 100)
         }
 
         editButton.setOnClickListener {
@@ -88,10 +101,10 @@ class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
         }
     }
 
-    override fun onError() {
+    override fun onError(error: String) {
         Toast.makeText(
             context,
-            resources.getText(R.string.id_not_found),
+            error,
             Toast.LENGTH_SHORT
         ).show()
     }
@@ -99,8 +112,7 @@ class Dz12StudentDetailsFragment : Fragment(), Dz12StudentDetailsView {
     override fun onDetach() {
         super.onDetach()
         listener = null
-
-        presenter.onDestroy()
+        presenter.detach()
     }
 
     interface Listener {

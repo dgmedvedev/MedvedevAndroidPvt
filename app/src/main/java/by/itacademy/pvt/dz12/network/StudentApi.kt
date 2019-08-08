@@ -15,7 +15,8 @@ interface StudentApi {
 
     @GET("data/student") // остальную часть допишет retrofit
     fun getStudents(
-        @Query("pageSize") pageSize: Int // дописывает с помощью @Query
+        @Query("pageSize") pageSize: Int, // дописывает с помощью @Query
+        @Query("offset") offset: Int
     ): Observable<MutableList<Student>>
 
     @GET("data/student/{objectId}")

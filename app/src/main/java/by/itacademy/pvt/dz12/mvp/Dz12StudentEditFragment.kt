@@ -2,6 +2,7 @@ package by.itacademy.pvt.dz12.mvp
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,11 +48,15 @@ class Dz12StudentEditFragment : Fragment(), Dz12StudentEditView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        val defaultValue = resources.getString(R.string.default_value)
+        val anonymous = resources.getString(R.string.anonymous)
+        val urlDebug = resources.getString(R.string.url_debug)
+        val notValidUrl = resources.getString(R.string.not_valid_url)
+        val ageMustBeInteger = resources.getString(R.string.age_integer)
+
         val view = inflater.inflate(R.layout.fragment_edit_student_dz8, container, false)
 
-        val idStudent = arguments?.getString(ID_STUDENT, "-1")
-
-        val anonymous: String = resources.getString(R.string.anonymous)
+        val idStudent = arguments?.getString(ID_STUDENT, defaultValue)
 
         if (idStudent == null)
             backStack()
@@ -66,8 +71,8 @@ class Dz12StudentEditFragment : Fragment(), Dz12StudentEditView {
 
         saveButton = view.findViewById(R.id.save)
 
-        if (idStudent != "-1") {
-            presenter.getStudentById()
+        if (idStudent != defaultValue) {
+            presenter.showStudentById()
         }
 
         saveButton.setOnClickListener {
@@ -87,15 +92,18 @@ class Dz12StudentEditFragment : Fragment(), Dz12StudentEditView {
 
                 var url = urlEditText.text.toString()
                 if (BuildConfig.DEBUG) {
-                    url = "https://clck.ru/Gx4Nd"
+                    url = urlDebug
                 }
 
                 presenter.saveStudent(url, name, age)
-                listener?.startDz12StudentListFragment()
+                val timer = Handler()
+                timer.postDelayed({
+                    listener?.startDz12StudentListFragment()
+                }, 100)
             } catch (nfe: NumberFormatException) {
-                onError("Age must be an integer")
+                onError(ageMustBeInteger)
             } catch (hfe: Dz12StudentEditPresenter.HttpFormatException) {
-                onError("Not valid URL")
+                onError(notValidUrl)
             }
         }
         return view
@@ -122,8 +130,7 @@ class Dz12StudentEditFragment : Fragment(), Dz12StudentEditView {
     override fun onDetach() {
         super.onDetach()
         listener = null
-
-        presenter.onDestroy()
+        presenter.detach()
     }
 
     interface Listener {

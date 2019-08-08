@@ -5,7 +5,7 @@ import io.reactivex.Observable
 import io.reactivex.Completable
 
 interface StudentRepository {
-    fun getList(pageSize: Int): Observable<MutableList<Student>>
+    fun getList(pageSize: Int, offset: Int): Observable<MutableList<Student>>
 
     fun getById(id: String): Observable<Student>
 
@@ -16,4 +16,6 @@ interface StudentRepository {
     fun updateStudent(student: Student): Completable
 
     fun deleteStudent(student: Student): Completable
+
+    fun deleteStudentById(id: String): Completable
 }
