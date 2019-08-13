@@ -8,6 +8,7 @@ import by.itacademy.pvt.dz0.Dz0Activity
 import by.itacademy.pvt.dz1.Dz1Activity
 import by.itacademy.pvt.dz11.Dz11MenuActivity
 import by.itacademy.pvt.dz12.Dz12MvpActivity
+import by.itacademy.pvt.dz13.Dz13MvvmActivity
 import by.itacademy.pvt.dz2.Dz2MenuActivity
 import by.itacademy.pvt.dz3.Dz3Activity
 import by.itacademy.pvt.dz4.Dz4Activity
@@ -54,6 +55,9 @@ class MenuActivity : Activity() {
         }
         dz12.setOnClickListener {
             start(Dz12MvpActivity())
+        }
+        dz13.setOnClickListener {
+            start(Dz13MvvmActivity())
         }
     }
 
