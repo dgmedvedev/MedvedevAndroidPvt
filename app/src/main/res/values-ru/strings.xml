@@ -64,6 +64,7 @@
     <string name="anonymous">Безымянный</string>
     <string name="image_not_found">Изображение не найдено</string>
     <string name="id_not_found">ID не найдено</string>
+    <string name="student_not_found">Студент не найден</string>
 
     <string name="latitude">Широта:</string>
     <string name="longitude">Долгота:</string>
