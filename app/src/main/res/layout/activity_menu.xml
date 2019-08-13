@@ -8,54 +8,92 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="100dp"
-            android:paddingEnd="100dp"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
             android:background="@color/menu">
 
-        <Button
-                android:id="@+id/dz0"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz0"/>
-        <Button
-                android:id="@+id/dz1"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz1"/>
-        <Button
-                android:id="@+id/dz2"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz2"/>
-        <Button
-                android:id="@+id/dz3"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz3"/>
-        <Button
-                android:id="@+id/dz4"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz4"/>
-        <Button
-                android:id="@+id/dz5"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz5"/>
-        <Button
-                android:id="@+id/dz6"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz6"/>
-        <Button
-                android:id="@+id/dz8"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz8"/>
-        <Button
-                android:id="@+id/dz9"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz9"/>
-        <Button
-                android:id="@+id/dz11"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz11"/>
-        <Button
-                android:id="@+id/dz12"
-                style="@style/ButtonActivityMenu"
-                android:text="@string/dz12"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+            <Button
+                    android:id="@+id/dz0"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz0"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+            <Button
+                    android:id="@+id/dz1"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz1"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+            <Button
+                    android:id="@+id/dz2"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz2"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+            <Button
+                    android:id="@+id/dz3"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz3"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+
+            <Button
+                    android:id="@+id/dz4"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz4"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+            <Button
+                    android:id="@+id/dz5"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz5"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+            <Button
+                    android:id="@+id/dz6"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz6"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+
+            <Button
+                    android:id="@+id/dz8"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz8"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+            <Button
+                    android:id="@+id/dz9"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz9"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+            <Button
+                    android:id="@+id/dz11"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz11"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+
+            <Button
+                    android:id="@+id/dz12"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz12"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+            <Button
+                    android:id="@+id/dz13"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz13"/>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
