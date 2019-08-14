@@ -6,4 +6,5 @@ sealed class Dz13State {
 
     class LoadFailed(val throwable: Throwable) : Dz13State()
     class Data(val list: List<Poi>) : Dz13State()
+    class Error(val throwable: Throwable) : Dz13State()
 }

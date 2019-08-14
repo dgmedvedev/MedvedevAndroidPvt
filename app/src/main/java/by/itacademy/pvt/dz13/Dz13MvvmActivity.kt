@@ -91,8 +91,6 @@ class Dz13MvvmActivity : FragmentActivity(), OnMapReadyCallback {
             transaction.replace(R.id.dz9Container, dz11Fragment)
             transaction.commit()
         }
-
-        viewModel.load()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

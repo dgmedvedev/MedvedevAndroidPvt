@@ -38,6 +38,8 @@
         <activity android:name="by.itacademy.pvt.dz11.mvvm.Dz11MvvmActivity"/>
         <activity android:name="by.itacademy.pvt.dz12.Dz12MvpActivity"/>
         <activity android:name="by.itacademy.pvt.dz13.Dz13MvvmActivity"/>
+        <activity android:name="by.itacademy.pvt.dz13.part2.Dz13TimerActivity"/>
+        <activity android:name="by.itacademy.pvt.dz13.Dz13MenuActivity"/>
 
         <activity android:name="by.itacademy.pvt.MenuActivity">
             <intent-filter>
