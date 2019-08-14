@@ -19,7 +19,7 @@ object Dz12StudentData {
 
     fun loadStudentList(callback: Callback) {
         disposable = repository
-            .getList(PAGE_SIZE)
+            .getList(PAGE_SIZE, 0)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
