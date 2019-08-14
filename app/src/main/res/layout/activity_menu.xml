@@ -95,5 +95,26 @@
                     android:text="@string/dz13"/>
         </LinearLayout>
 
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+            <Button
+                    android:id="@+id/dz15"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz15"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+
+            <Button
+                    android:id="@+id/dz16"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz16"
+                    android:layout_marginEnd="@dimen/padding20dp"/>
+            <Button
+                    android:id="@+id/dz17"
+                    style="@style/ButtonActivityMenu"
+                    android:text="@string/dz17"/>
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
